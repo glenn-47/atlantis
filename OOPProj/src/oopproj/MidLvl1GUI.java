@@ -7,6 +7,7 @@ package oopproj;
 /**
  *
  * @author mncrf
+ * .....
  */
 public class MidLvl1GUI extends javax.swing.JFrame {
     
