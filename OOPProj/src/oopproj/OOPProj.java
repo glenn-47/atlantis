@@ -15,8 +15,8 @@ public class OOPProj {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        MidLvl1GUI mid1GUI= new MidLvl1GUI();
-        mid1GUI.setVisible(true);
+        MainMenuGUI mainGUI= new MainMenuGUI();
+        mainGUI.setVisible(true);
     }
     
 }
