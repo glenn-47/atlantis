@@ -35,6 +35,7 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1000, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        rightBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/Arrow1.png"))); // NOI18N
         rightBtn.setText("Right");
         rightBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

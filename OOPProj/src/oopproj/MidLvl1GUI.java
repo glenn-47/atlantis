@@ -37,13 +37,14 @@ public class MidLvl1GUI extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(900, 545));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        leftBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/Arrow2.png"))); // NOI18N
         leftBtn.setText("Left");
         leftBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 leftBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(leftBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 230, -1, -1));
+        getContentPane().add(leftBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 260, 60, 110));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/midImg1.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
