@@ -28,9 +28,9 @@ public class MidLvl2GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        rightBtn = new javax.swing.JButton();
         mainBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        leftArrow = new javax.swing.JLabel();
         ColCounter = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
 
@@ -38,22 +38,13 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1000, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        rightBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/Arrow1.png"))); // NOI18N
-        rightBtn.setText("Right");
-        rightBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rightBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rightBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
-
         mainBtn.setText("MainMenu");
         mainBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mainBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(mainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
+        getContentPane().add(mainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C3.png"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -63,6 +54,14 @@ public class MidLvl2GUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 350, 270));
+
+        leftArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/Arrow1.png"))); // NOI18N
+        leftArrow.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                leftArrowMouseClicked(evt);
+            }
+        });
+        getContentPane().add(leftArrow, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 100, 100));
         getContentPane().add(ColCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/midImg2.png"))); // NOI18N
@@ -75,14 +74,6 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBtnActionPerformed
-        // TODO add your handling code here:
-        MidLvl1GUI mid1GUI= new MidLvl1GUI();
-        mid1GUI.setVisible(true);
-        this.dispose();
-       
-    }//GEN-LAST:event_rightBtnActionPerformed
-
     private void mainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainBtnActionPerformed
         // TODO add your handling code here:
         MainMenuGUI mainGUI= new MainMenuGUI();
@@ -94,6 +85,13 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         //https://clipart-library.com/clipart/shipwreck-cliparts-4.htm
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void leftArrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_leftArrowMouseClicked
+        // TODO add your handling code here:
+        MidLvl1GUI Mid1= new MidLvl1GUI();
+        Mid1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_leftArrowMouseClicked
 
     /**
      * @param args the command line arguments
@@ -124,7 +122,7 @@ public class MidLvl2GUI extends javax.swing.JFrame {
     private javax.swing.JProgressBar ColCounter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel leftArrow;
     private javax.swing.JButton mainBtn;
-    private javax.swing.JButton rightBtn;
     // End of variables declaration//GEN-END:variables
 }
