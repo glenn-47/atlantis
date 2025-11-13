@@ -29,6 +29,9 @@ public class MidLvl2GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         rightBtn = new javax.swing.JButton();
+        mainBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        ColCounter = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,12 +47,30 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         });
         getContentPane().add(rightBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
 
+        mainBtn.setText("MainMenu");
+        mainBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(mainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C3.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 350, 270));
+        getContentPane().add(ColCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, -1, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/midImg2.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         jLabel1.setMaximumSize(new java.awt.Dimension(1000, 500));
         jLabel1.setMinimumSize(new java.awt.Dimension(1000, 500));
         jLabel1.setPreferredSize(new java.awt.Dimension(1000, 500));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1020, 520));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1020, 520));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -61,6 +82,18 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         this.dispose();
        
     }//GEN-LAST:event_rightBtnActionPerformed
+
+    private void mainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainBtnActionPerformed
+        // TODO add your handling code here:
+        MainMenuGUI mainGUI= new MainMenuGUI();
+        mainGUI.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_mainBtnActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        //https://clipart-library.com/clipart/shipwreck-cliparts-4.htm
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -88,7 +121,10 @@ public class MidLvl2GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JProgressBar ColCounter;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton mainBtn;
     private javax.swing.JButton rightBtn;
     // End of variables declaration//GEN-END:variables
 }
