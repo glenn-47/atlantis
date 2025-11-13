@@ -30,6 +30,10 @@ public class MidLvl1GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         leftBtn = new javax.swing.JButton();
+        mainBtn = new javax.swing.JButton();
+        C1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        ColCounter = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,6 +49,32 @@ public class MidLvl1GUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(leftBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 260, 60, 110));
+
+        mainBtn.setText("MainMenu");
+        mainBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(mainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+
+        C1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C1.png"))); // NOI18N
+        C1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                C1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(C1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 60, 90));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C2.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 10, 530, 340));
+        getContentPane().add(ColCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/midImg1.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -62,6 +92,24 @@ public class MidLvl1GUI extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_leftBtnActionPerformed
+
+    private void mainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainBtnActionPerformed
+        // TODO add your handling code here:
+         MainMenuGUI mainGUI= new MainMenuGUI();
+        mainGUI.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_mainBtnActionPerformed
+
+    private void C1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C1MouseClicked
+        // TODO add your handling code here:
+        //http://www.clker.com/clipart-24857.html
+        
+    }//GEN-LAST:event_C1MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        //https://clipart-library.com/clipart/cliparts-metal-scraps_8.htm
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -89,7 +137,11 @@ public class MidLvl1GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel C1;
+    private javax.swing.JProgressBar ColCounter;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton leftBtn;
+    private javax.swing.JButton mainBtn;
     // End of variables declaration//GEN-END:variables
 }
