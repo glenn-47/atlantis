@@ -55,16 +55,15 @@ public class MidLvl1GUI extends javax.swing.JFrame {
                 C1MouseClicked(evt);
             }
         });
-        getContentPane().add(C1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 310, 60, 90));
+        getContentPane().add(C1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, 60, 100));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C2.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C.2.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 560, 340));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 90, 90));
 
         rightArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/Arrow2.png"))); // NOI18N
         rightArrow.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -83,7 +82,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
                 jLabel1MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 937, 545));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 937, 545));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
