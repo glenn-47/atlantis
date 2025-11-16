@@ -4,6 +4,8 @@
  */
 package oopproj;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author mncrf
@@ -17,6 +19,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
      */
     public MainMenuGUI() {
         initComponents();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
@@ -30,6 +33,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        deepAbyssButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,6 +54,14 @@ public class MainMenuGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, -1, -1));
+
+        deepAbyssButton.setText("The Deep Abyss");
+        deepAbyssButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deepAbyssButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(deepAbyssButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 470, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/MainMenu.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -74,6 +86,12 @@ public class MainMenuGUI extends javax.swing.JFrame {
        this.dispose();
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void deepAbyssButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deepAbyssButtonActionPerformed
+        // TODO add your handling code here:
+        new LowLvlGUI().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_deepAbyssButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,6 +119,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton deepAbyssButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
