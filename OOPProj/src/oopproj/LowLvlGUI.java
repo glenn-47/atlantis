@@ -4,8 +4,6 @@
  */
 package oopproj;
 
-import java.awt.Color;
-
 /**
  *
  * @author glenn
@@ -19,11 +17,6 @@ public class LowLvlGUI extends javax.swing.JFrame {
      */
     public LowLvlGUI() {
         initComponents();
-        
-        // --- BACKGROUND COLOR ---
-    // (10, 10, 40) is a very dark navy blue
-    setBackground(new Color(10, 10, 40));
-    
     }
 
     /**
@@ -35,21 +28,268 @@ public class LowLvlGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        quizButtonGroup = new javax.swing.ButtonGroup();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        creaturePanel1 = new oopproj.CreaturePanel();
+        creatureComboBox = new javax.swing.JComboBox<>();
+        imageLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descriptionTextArea = new javax.swing.JTextArea();
+        pressurePanel1 = new oopproj.PressurePanel();
+        jLabel1 = new javax.swing.JLabel();
+        depthField = new javax.swing.JTextField();
+        calculateButton = new javax.swing.JButton();
+        resultLabel = new javax.swing.JLabel();
+        quizPanel1 = new oopproj.QuizPanel();
+        questionCounterLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        questionTextArea = new javax.swing.JTextArea();
+        optionARadio = new javax.swing.JRadioButton();
+        optionBRadio = new javax.swing.JRadioButton();
+        optionCRadio = new javax.swing.JRadioButton();
+        optionDRadio = new javax.swing.JRadioButton();
+        submitButton = new javax.swing.JButton();
+        feedbackLabel = new javax.swing.JLabel();
+        abyssBackToMain = new javax.swing.JButton();
+        exitAtlantis = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
+
+        creaturePanel1.setBackground(new java.awt.Color(10, 10, 40));
+
+        creatureComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        creatureComboBox.setToolTipText("Choose Creature...");
+
+        imageLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        descriptionTextArea.setEditable(false);
+        descriptionTextArea.setColumns(20);
+        descriptionTextArea.setLineWrap(true);
+        descriptionTextArea.setRows(5);
+        descriptionTextArea.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(descriptionTextArea);
+
+        javax.swing.GroupLayout creaturePanel1Layout = new javax.swing.GroupLayout(creaturePanel1);
+        creaturePanel1.setLayout(creaturePanel1Layout);
+        creaturePanel1Layout.setHorizontalGroup(
+            creaturePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(creaturePanel1Layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addGroup(creaturePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(creaturePanel1Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(creatureComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(434, Short.MAX_VALUE))
+        );
+        creaturePanel1Layout.setVerticalGroup(
+            creaturePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(creaturePanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(creatureComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(267, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Creature Viewer", creaturePanel1);
+
+        pressurePanel1.setBackground(new java.awt.Color(10, 10, 40));
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Enter depth (meters):");
+
+        depthField.setColumns(10);
+
+        calculateButton.setText("Calculate Pressure");
+
+        resultLabel.setForeground(new java.awt.Color(255, 255, 255));
+        resultLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout pressurePanel1Layout = new javax.swing.GroupLayout(pressurePanel1);
+        pressurePanel1.setLayout(pressurePanel1Layout);
+        pressurePanel1Layout.setHorizontalGroup(
+            pressurePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pressurePanel1Layout.createSequentialGroup()
+                .addGap(196, 196, 196)
+                .addGroup(pressurePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pressurePanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(depthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pressurePanel1Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(resultLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pressurePanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(calculateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(366, Short.MAX_VALUE))
+        );
+        pressurePanel1Layout.setVerticalGroup(
+            pressurePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pressurePanel1Layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addGroup(pressurePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(depthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(calculateButton)
+                .addGap(18, 18, 18)
+                .addComponent(resultLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(355, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Pressure Calculator", pressurePanel1);
+
+        quizPanel1.setBackground(new java.awt.Color(10, 10, 40));
+
+        questionCounterLabel.setForeground(new java.awt.Color(255, 255, 255));
+        questionCounterLabel.setText("Question 1/5");
+
+        questionTextArea.setEditable(false);
+        questionTextArea.setColumns(20);
+        questionTextArea.setLineWrap(true);
+        questionTextArea.setRows(5);
+        questionTextArea.setText("What is the common name for the 'Chauliodus' fish?");
+        questionTextArea.setWrapStyleWord(true);
+        jScrollPane2.setViewportView(questionTextArea);
+
+        quizButtonGroup.add(optionARadio);
+        optionARadio.setForeground(new java.awt.Color(255, 255, 255));
+        optionARadio.setText("Option A");
+        optionARadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optionARadioActionPerformed(evt);
+            }
+        });
+
+        quizButtonGroup.add(optionBRadio);
+        optionBRadio.setForeground(new java.awt.Color(255, 255, 255));
+        optionBRadio.setText("Option B");
+
+        quizButtonGroup.add(optionCRadio);
+        optionCRadio.setForeground(new java.awt.Color(255, 255, 255));
+        optionCRadio.setText("Option C");
+
+        quizButtonGroup.add(optionDRadio);
+        optionDRadio.setForeground(new java.awt.Color(255, 255, 255));
+        optionDRadio.setText("Option D");
+
+        submitButton.setText("Submit Answer");
+
+        feedbackLabel.setForeground(new java.awt.Color(255, 255, 255));
+        feedbackLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout quizPanel1Layout = new javax.swing.GroupLayout(quizPanel1);
+        quizPanel1.setLayout(quizPanel1Layout);
+        quizPanel1Layout.setHorizontalGroup(
+            quizPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(quizPanel1Layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addGroup(quizPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(quizPanel1Layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(questionCounterLabel))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(quizPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(quizPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(optionBRadio)
+                            .addComponent(optionARadio)
+                            .addComponent(optionCRadio)
+                            .addComponent(optionDRadio)))
+                    .addGroup(quizPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(quizPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(feedbackLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(372, Short.MAX_VALUE))
+        );
+        quizPanel1Layout.setVerticalGroup(
+            quizPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(quizPanel1Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(questionCounterLabel)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(optionARadio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(optionBRadio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(optionCRadio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(optionDRadio)
+                .addGap(18, 18, 18)
+                .addComponent(submitButton)
+                .addGap(18, 18, 18)
+                .addComponent(feedbackLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(160, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Deep Sea Quiz", quizPanel1);
+
+        abyssBackToMain.setText("Back to Main Menu");
+        abyssBackToMain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abyssBackToMainActionPerformed(evt);
+            }
+        });
+
+        exitAtlantis.setText("Exit Atlantis");
+        exitAtlantis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitAtlantisActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 826, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(abyssBackToMain)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(exitAtlantis)
+                .addGap(253, 253, 253))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(abyssBackToMain)
+                    .addComponent(exitAtlantis))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void optionARadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionARadioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_optionARadioActionPerformed
+
+    private void abyssBackToMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abyssBackToMainActionPerformed
+        // TODO add your handling code here:
+        new MainMenuGUI().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_abyssBackToMainActionPerformed
+
+    private void exitAtlantisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitAtlantisActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitAtlantisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -77,5 +317,29 @@ public class LowLvlGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton abyssBackToMain;
+    private javax.swing.JButton calculateButton;
+    private javax.swing.JComboBox<String> creatureComboBox;
+    private oopproj.CreaturePanel creaturePanel1;
+    private javax.swing.JTextField depthField;
+    private javax.swing.JTextArea descriptionTextArea;
+    private javax.swing.JButton exitAtlantis;
+    private javax.swing.JLabel feedbackLabel;
+    private javax.swing.JLabel imageLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JRadioButton optionARadio;
+    private javax.swing.JRadioButton optionBRadio;
+    private javax.swing.JRadioButton optionCRadio;
+    private javax.swing.JRadioButton optionDRadio;
+    private oopproj.PressurePanel pressurePanel1;
+    private javax.swing.JLabel questionCounterLabel;
+    private javax.swing.JTextArea questionTextArea;
+    private javax.swing.ButtonGroup quizButtonGroup;
+    private oopproj.QuizPanel quizPanel1;
+    private javax.swing.JLabel resultLabel;
+    private javax.swing.JButton submitButton;
     // End of variables declaration//GEN-END:variables
 }
