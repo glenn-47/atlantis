@@ -18,7 +18,9 @@ public class MidLvl1GUI extends javax.swing.JFrame {
      */
     public MidLvl1GUI() {
         initComponents();
-    }
+        
+    private ArrayList<String> collectedItems = new ArrayList<>();  
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
