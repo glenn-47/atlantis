@@ -11,14 +11,17 @@ package oopproj;
 public class MidLvl2GUI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MidLvl2GUI.class.getName());
-
+    private CollectibleSystem collectibleSystem; 
     /**
      * Creates new form MidLvl2GUI
      */
     public MidLvl2GUI() {
         initComponents();
     }
-
+    
+    private void collectibleSetup(){
+        collectibleSystem= new CollectibleSystem();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,7 +32,7 @@ public class MidLvl2GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         mainBtn = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        ShipLbl = new javax.swing.JLabel();
         leftArrow = new javax.swing.JLabel();
         ColCounter = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
@@ -46,13 +49,13 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         });
         getContentPane().add(mainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C3 (2).png"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        ShipLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C3 (2).png"))); // NOI18N
+        ShipLbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                ShipLblMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 360, 110, 90));
+        getContentPane().add(ShipLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 360, 110, 90));
 
         leftArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/Arrow1.png"))); // NOI18N
         leftArrow.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -80,10 +83,12 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_mainBtnActionPerformed
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void ShipLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ShipLblMouseClicked
         // TODO add your handling code here:
         //https://clipart-library.com/clipart/shipwreck-cliparts-4.htm
-    }//GEN-LAST:event_jLabel2MouseClicked
+        ShipLbl.setVisible(false);
+        collectibleSystem.createCollectible(ShipLbl, "Ship Wreck");
+    }//GEN-LAST:event_ShipLblMouseClicked
 
     private void leftArrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_leftArrowMouseClicked
         // TODO add your handling code here:
@@ -119,8 +124,8 @@ public class MidLvl2GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar ColCounter;
+    private javax.swing.JLabel ShipLbl;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel leftArrow;
     private javax.swing.JButton mainBtn;
     // End of variables declaration//GEN-END:variables
