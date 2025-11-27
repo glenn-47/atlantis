@@ -10,6 +10,9 @@ package oopproj;
  */
 public class LowLvlGUI extends javax.swing.JFrame {
     
+    // Data Structure
+    private java.util.ArrayList<Creature> creatureList;
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LowLvlGUI.class.getName());
 
     /**
@@ -17,6 +20,65 @@ public class LowLvlGUI extends javax.swing.JFrame {
      */
     public LowLvlGUI() {
         initComponents();
+        
+        // Load the data
+        loadCreatures();
+
+        // Setup ComboBox
+        creatureComboBox.removeAllItems();
+        for (Creature c : creatureList) {
+            creatureComboBox.addItem(c.getName());
+        }
+
+        // Add Listener (When user picks a fish)
+        creatureComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateCreatureDisplay();
+            }
+        });
+
+        // Show the first one immediately
+        updateCreatureDisplay();
+    }
+    
+    private void loadCreatures() {
+    creatureList = new java.util.ArrayList<>();
+    
+    // Giants
+    creatureList.add(new BigCreature("Sperm Whale", "Dives deep to hunt.", "/resources/sperm_whale.png", 20.5));
+    creatureList.add(new BigCreature("Giant Squid", "The legendary Kraken.", "/resources/giant_squid.png", 13.0));
+    
+    // Small
+    creatureList.add(new SmallCreature("Anglerfish", "Uses a lure.", "/resources/anglerfish.png", "Ambush Carnivore"));
+    creatureList.add(new SmallCreature("Vampire Squid", "Turns inside out.", "/resources/vampire_squid.png", "Marine Snow"));
+    }
+
+    private void updateCreatureDisplay() {
+        int index = creatureComboBox.getSelectedIndex();
+
+        if (index >= 0 && index < creatureList.size()) {
+            Creature selected = creatureList.get(index);
+
+            // Update Text
+            String text = selected.getDescription() + "\n\n" + selected.getStats();
+            descriptionTextArea.setText(text);
+            descriptionTextArea.setCaretPosition(0); 
+
+            // Update Image
+            String path = selected.getImagePath();
+            java.net.URL imgURL = getClass().getResource(path);
+
+            if (imgURL != null) {
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(imgURL);
+                java.awt.Image img = icon.getImage().getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(), java.awt.Image.SCALE_SMOOTH);
+                imageLabel.setIcon(new javax.swing.ImageIcon(img));
+                imageLabel.setText("");
+            } else {
+                imageLabel.setIcon(null);
+                imageLabel.setForeground(java.awt.Color.RED);
+                imageLabel.setText("Image missing: " + path);
+            }
+        }
     }
 
     /**
@@ -75,14 +137,17 @@ public class LowLvlGUI extends javax.swing.JFrame {
         creaturePanel1Layout.setHorizontalGroup(
             creaturePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(creaturePanel1Layout.createSequentialGroup()
-                .addGap(220, 220, 220)
                 .addGroup(creaturePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(creaturePanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                        .addGap(220, 220, 220)
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(creaturePanel1Layout.createSequentialGroup()
+                        .addGap(359, 359, 359)
                         .addComponent(creatureComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(434, Short.MAX_VALUE))
+                    .addGroup(creaturePanel1Layout.createSequentialGroup()
+                        .addGap(313, 313, 313)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
         creaturePanel1Layout.setVerticalGroup(
             creaturePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,10 +155,10 @@ public class LowLvlGUI extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(creatureComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(267, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Creature Viewer", creaturePanel1);
@@ -140,7 +205,7 @@ public class LowLvlGUI extends javax.swing.JFrame {
                 .addComponent(calculateButton)
                 .addGap(18, 18, 18)
                 .addComponent(resultLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(355, Short.MAX_VALUE))
+                .addContainerGap(357, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Pressure Calculator", pressurePanel1);
@@ -229,7 +294,7 @@ public class LowLvlGUI extends javax.swing.JFrame {
                 .addComponent(submitButton)
                 .addGap(18, 18, 18)
                 .addComponent(feedbackLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Deep Sea Quiz", quizPanel1);
