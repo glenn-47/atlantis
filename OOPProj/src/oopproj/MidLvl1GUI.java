@@ -4,13 +4,15 @@
  */
 package oopproj;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mncrf
  * .....
  */
 public class MidLvl1GUI extends javax.swing.JFrame {
-    
+    private ArrayList<String> collectibles = new ArrayList<>();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MidLvl1GUI.class.getName());
 
     /**
@@ -18,7 +20,9 @@ public class MidLvl1GUI extends javax.swing.JFrame {
      */
     public MidLvl1GUI() {
         initComponents();
-    }
+        
+    
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,8 +34,8 @@ public class MidLvl1GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         mainBtn = new javax.swing.JButton();
-        C1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        barrelLbl = new javax.swing.JLabel();
+        scrapLbl = new javax.swing.JLabel();
         rightArrow = new javax.swing.JLabel();
         ColCounter = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
@@ -48,21 +52,21 @@ public class MidLvl1GUI extends javax.swing.JFrame {
         });
         getContentPane().add(mainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        C1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C1.png"))); // NOI18N
-        C1.addMouseListener(new java.awt.event.MouseAdapter() {
+        barrelLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C1.png"))); // NOI18N
+        barrelLbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                C1MouseClicked(evt);
+                barrelLblMouseClicked(evt);
             }
         });
-        getContentPane().add(C1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, 60, 100));
+        getContentPane().add(barrelLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, 60, 100));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C.2.png"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        scrapLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C.2.png"))); // NOI18N
+        scrapLbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                scrapLblMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 90, 90));
+        getContentPane().add(scrapLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 90, 90));
 
         rightArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/Arrow2.png"))); // NOI18N
         rightArrow.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -93,16 +97,22 @@ public class MidLvl1GUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_mainBtnActionPerformed
 
-    private void C1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C1MouseClicked
+    private void barrelLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barrelLblMouseClicked
         // TODO add your handling code here:
         //http://www.clker.com/clipart-24857.html
+        barrelLbl.setVisible(false);
+        collectibles.add("Barrel");
         
-    }//GEN-LAST:event_C1MouseClicked
+        
+    }//GEN-LAST:event_barrelLblMouseClicked
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void scrapLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scrapLblMouseClicked
         // TODO add your handling code here:
         //https://clipart-library.com/clipart/cliparts-metal-scraps_8.htm
-    }//GEN-LAST:event_jLabel2MouseClicked
+        scrapLbl.setVisible(false);
+        collectibles.add("Scrap");
+        
+    }//GEN-LAST:event_scrapLblMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
@@ -143,11 +153,11 @@ public class MidLvl1GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel C1;
     private javax.swing.JProgressBar ColCounter;
+    private javax.swing.JLabel barrelLbl;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton mainBtn;
     private javax.swing.JLabel rightArrow;
+    private javax.swing.JLabel scrapLbl;
     // End of variables declaration//GEN-END:variables
 }
