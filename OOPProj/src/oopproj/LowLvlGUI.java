@@ -171,6 +171,11 @@ public class LowLvlGUI extends javax.swing.JFrame {
         depthField.setColumns(10);
 
         calculateButton.setText("Calculate Pressure");
+        calculateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calculateButtonActionPerformed(evt);
+            }
+        });
 
         resultLabel.setForeground(new java.awt.Color(255, 255, 255));
         resultLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -187,11 +192,10 @@ public class LowLvlGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(depthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pressurePanel1Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(resultLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pressurePanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addComponent(calculateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(pressurePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(calculateButton, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                            .addComponent(resultLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(366, Short.MAX_VALUE))
         );
         pressurePanel1Layout.setVerticalGroup(
@@ -355,6 +359,38 @@ public class LowLvlGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_exitAtlantisActionPerformed
+
+    private void calculateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateButtonActionPerformed
+        // TODO add your handling code here:
+        // Get the text from the box
+        String input = depthField.getText();
+
+        try {
+            // Convert text to a number (Double)
+            double depth = Double.parseDouble(input);
+
+            // Validation: Depth cannot be negative
+            if (depth < 0) {
+                resultLabel.setText("Depth cannot be negative!");
+                resultLabel.setForeground(java.awt.Color.RED);
+                return; 
+            }
+
+            // The Math: 1 atm (surface) + 1 atm for every 10 meters
+            double pressure = 1 + (depth / 10.0);
+
+            // Display Result (Formatted to 2 decimal places)
+            String resultText = String.format("Pressure at %.1fm is %.2f Atmospheres", depth, pressure);
+
+            resultLabel.setText(resultText);
+            resultLabel.setForeground(java.awt.Color.CYAN);
+
+        } catch (NumberFormatException e) {
+            // Handle errors (if user types letters or nothing)
+            resultLabel.setText("Please enter a valid number.");
+            resultLabel.setForeground(java.awt.Color.RED);
+        }
+    }//GEN-LAST:event_calculateButtonActionPerformed
 
     /**
      * @param args the command line arguments
