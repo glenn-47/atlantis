@@ -31,7 +31,6 @@ public class CollectibleSystem {
         if(!collectibles.contains(label)){//if collectible isnt in the list, itll be added, making it set visble false
           collectibles.add(label);
         label.setVisible(false);
-        
         String name= labelNames.get(label);
         JOptionPane.showMessageDialog(null,"You found: "+name);
         }

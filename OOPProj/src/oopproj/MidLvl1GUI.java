@@ -12,17 +12,60 @@ import java.util.ArrayList;
  * .....
  */
 public class MidLvl1GUI extends javax.swing.JFrame {
-    private ArrayList<String> collectibles = new ArrayList<>();
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MidLvl1GUI.class.getName());
-
+    private static CollectibleSystem collectibleSystem;
     /**
      * Creates new form MidLvl1GUI
      */
     public MidLvl1GUI() {
         initComponents();
-        
+        collectibleSetup();
+    }
     
-}
+    private void collectibleSetup(){
+        if (collectibleSystem == null) {
+            collectibleSystem = new CollectibleSystem();
+        }
+        collectibleSystem.createCollectible(barrelLbl, "Barrel");//creates collectible wiwth label name and srting name
+        collectibleSystem.createCollectible(scrapLbl, "Metal Scrap");
+        
+        //checks for collectibles if they were already found by reading the file
+        loadCollectedItems();
+        
+        updateProgressBar();
+    }
+    
+    private void updateProgressBar(){
+        colCounter.setMaximum(3);
+        colCounter.setValue(collectibleSystem.getCollectionCount());
+    }
+    
+    private void loadCollectedItems() {
+        try(java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("CollectiblesProgress.txt"))) {
+            String line;
+            while((line = br.readLine()) != null) {//reads each line of the file that isnt empty
+                if(line.contains("Barrel") && line.contains("MidLvl1")) {//if line has barrel and midlvl1, the barrel is collected
+                    if(!collectibleSystem.isCollected(barrelLbl)) {//if statement prevents progress bar duplication and message popups
+                        collectibleSystem.getCollectedItems().add(barrelLbl);
+                    }
+                    barrelLbl.setVisible(false);
+                }
+                if(line.contains("Metal Scrap") && line.contains("MidLvl1")) {//if line has metal scrap and midlvl1, th scrap is collected
+                    if(!collectibleSystem.isCollected(scrapLbl)) {//if statement prevents progress bar collecitbe duplication and message popups
+                        collectibleSystem.getCollectedItems().add(scrapLbl);
+                    }
+                    scrapLbl.setVisible(false);
+                }
+            }
+        } catch(java.io.IOException e) {
+            // File doesn't exist yet, no items collected
+        }
+    }
+    
+    public static CollectibleSystem getCollectibleSystem() {
+        return collectibleSystem;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,8 +80,10 @@ public class MidLvl1GUI extends javax.swing.JFrame {
         barrelLbl = new javax.swing.JLabel();
         scrapLbl = new javax.swing.JLabel();
         rightArrow = new javax.swing.JLabel();
-        ColCounter = new javax.swing.JProgressBar();
-        jLabel1 = new javax.swing.JLabel();
+        displayBtn = new javax.swing.JButton();
+        colCounter = new javax.swing.JProgressBar();
+        deleteBtn = new javax.swing.JButton();
+        background1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 500));
@@ -50,7 +95,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
                 mainBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(mainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        getContentPane().add(mainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
         barrelLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C1.png"))); // NOI18N
         barrelLbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -75,17 +120,33 @@ public class MidLvl1GUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rightArrow, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 260, 80, 70));
-        getContentPane().add(ColCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/midImg1.jpeg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jLabel1.setMinimumSize(new java.awt.Dimension(1000, 500));
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+        displayBtn.setText("View Collectibles");
+        displayBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 937, 545));
+        getContentPane().add(displayBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, -1, -1));
+        getContentPane().add(colCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 60, 140, -1));
+
+        deleteBtn.setText("Reset");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, -1, -1));
+
+        background1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/midImg1.jpeg"))); // NOI18N
+        background1.setText("jLabel1");
+        background1.setMinimumSize(new java.awt.Dimension(1000, 500));
+        background1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                background1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(background1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 937, 545));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -100,25 +161,24 @@ public class MidLvl1GUI extends javax.swing.JFrame {
     private void barrelLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barrelLblMouseClicked
         // TODO add your handling code here:
         //http://www.clker.com/clipart-24857.html
-        barrelLbl.setVisible(false);
-        collectibles.add("Barrel");
-        
-        
+        collectibleSystem.collectCollectible(barrelLbl);
+        updateProgressBar();
+        saveProgress("Barrel");//saves collectible to the txt as barrel
     }//GEN-LAST:event_barrelLblMouseClicked
 
     private void scrapLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scrapLblMouseClicked
         // TODO add your handling code here:
         //https://clipart-library.com/clipart/cliparts-metal-scraps_8.htm
-        scrapLbl.setVisible(false);
-        collectibles.add("Scrap");
-        
+        collectibleSystem.collectCollectible(scrapLbl);
+        updateProgressBar();
+        saveProgress("Metal Scrap");//saves collectible to the txt as metal scrap
     }//GEN-LAST:event_scrapLblMouseClicked
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void background1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_background1MouseClicked
         // TODO add your handling code here:
         
         
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_background1MouseClicked
 
     private void rightArrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rightArrowMouseClicked
         // TODO add your handling code here:
@@ -126,6 +186,51 @@ public class MidLvl1GUI extends javax.swing.JFrame {
         mid2GUI.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_rightArrowMouseClicked
+
+    private void displayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBtnActionPerformed
+        // TODO add your handling code here://insipiration  from lecture notes
+        try(java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("CollectiblesProgress.txt"))) {//reads the file
+            String item;
+            StringBuilder message = new StringBuilder("Collected Items:\n");//creates text "Collected Items:"\n is used to skip to a new line
+            item = br.readLine();
+            while(item != null) {//reads each line that isnt empty
+                message.append(item).append("\n");
+                item = br.readLine();
+            }
+            
+            javax.swing.JOptionPane.showMessageDialog(this, message.toString());//displays the collected items
+        } catch(java.io.IOException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "An error occurred while reading the file: " + e.getMessage());
+        }
+
+    }//GEN-LAST:event_displayBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        try(java.io.BufferedWriter bw = new java.io.BufferedWriter(new java.io.FileWriter("CollectiblesProgress.txt", false))) {
+            bw.write("");
+            javax.swing.JOptionPane.showMessageDialog(this, "Progress deleted! Returning to main menu...");
+            if(collectibleSystem != null) {
+                collectibleSystem.resetCollectibles();
+            }
+            collectibleSystem = null;
+            MainMenuGUI mainGUI = new MainMenuGUI();
+            mainGUI.setVisible(true);
+            this.dispose();
+        } catch(java.io.IOException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error clearing file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
+    
+    private void saveProgress(String collectibleName) {
+        try(java.io.BufferedWriter bw = new java.io.BufferedWriter(new java.io.FileWriter("CollectiblesProgress.txt", true))) {
+            bw.write(collectibleName + " collected in MidLvl1");
+            bw.newLine();
+            javax.swing.JOptionPane.showMessageDialog(this, "Progress saved successfully!");
+        } catch(java.io.IOException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -153,9 +258,11 @@ public class MidLvl1GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JProgressBar ColCounter;
+    private javax.swing.JLabel background1;
     private javax.swing.JLabel barrelLbl;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JProgressBar colCounter;
+    private javax.swing.JButton deleteBtn;
+    private javax.swing.JButton displayBtn;
     private javax.swing.JButton mainBtn;
     private javax.swing.JLabel rightArrow;
     private javax.swing.JLabel scrapLbl;
