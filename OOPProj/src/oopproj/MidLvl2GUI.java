@@ -11,7 +11,7 @@ package oopproj;
 public class MidLvl2GUI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MidLvl2GUI.class.getName());
-    private static CollectibleSystem collectibleSystem; 
+    private static CollectibleSystem collectibleSystem;
     /**
      * Creates new form MidLvl2GUI
      */
@@ -137,7 +137,7 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         //https://clipart-library.com/clipart/shipwreck-cliparts-4.htm
         collectibleSystem.collectCollectible(shipLbl);//collectbile collected
         updateProgressBar();
-        saveProgress("Ship Wreck");//saves collectbile and Shiip wreck to the txt
+        saveProgress("Ship Wreck");//saves collectbile and Ship wreck to the txt
     }//GEN-LAST:event_shipLblMouseClicked
 
     private void leftArrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_leftArrowMouseClicked
@@ -170,28 +170,19 @@ public class MidLvl2GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBtnActionPerformed
     
     private void deleteProgress() {
-        try(java.io.BufferedWriter bw = new java.io.BufferedWriter(new java.io.FileWriter("CollectiblesProgress.txt", false))) {
-            bw.write("");
-            if(collectibleSystem != null) {
-                collectibleSystem.resetCollectibles();
-            }
-            javax.swing.JOptionPane.showMessageDialog(this, "Progress deleted! Returning to main menu...");
-            MainMenuGUI mainGUI = new MainMenuGUI();
-            mainGUI.setVisible(true);
-            this.dispose();
-        } catch(java.io.IOException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Error clearing file: " + e.getMessage());
+        Progress progress = new Progress("CollectiblesProgress.txt");
+        progress.clearProgress();
+        if(collectibleSystem != null) {
+            collectibleSystem.resetCollectibles();
         }
+        MainMenuGUI mainGUI = new MainMenuGUI();
+        mainGUI.setVisible(true);
+        this.dispose();
     }
     
     private void saveProgress(String collectibleName) {
-        try(java.io.BufferedWriter bw = new java.io.BufferedWriter(new java.io.FileWriter("CollectiblesProgress.txt", true))) {//creates tx file
-            bw.write(collectibleName + " collected in MidLvl2");// writes collectible name and location
-            bw.newLine();//creates new line
-            javax.swing.JOptionPane.showMessageDialog(this, "Progress saved successfully!");
-        } catch(java.io.IOException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        }
+        Progress progressHandler = new Progress("CollectiblesProgress.txt");
+        progressHandler.saveCollectible(collectibleName, "MidLvl2");
     }
 
     /**

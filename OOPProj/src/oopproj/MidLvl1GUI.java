@@ -27,7 +27,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
         if (collectibleSystem == null) {
             collectibleSystem = new CollectibleSystem();
         }
-        collectibleSystem.createCollectible(barrelLbl, "Barrel");//creates collectible wiwth label name and srting name
+        collectibleSystem.createCollectible(barrelLbl, "Barrel");//creates collectible with label name and string name
         collectibleSystem.createCollectible(scrapLbl, "Metal Scrap");
         
         //checks for collectibles if they were already found by reading the file
@@ -164,6 +164,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
         collectibleSystem.collectCollectible(barrelLbl);
         updateProgressBar();
         saveProgress("Barrel");//saves collectible to the txt as barrel
+        
     }//GEN-LAST:event_barrelLblMouseClicked
 
     private void scrapLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scrapLblMouseClicked
@@ -172,6 +173,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
         collectibleSystem.collectCollectible(scrapLbl);
         updateProgressBar();
         saveProgress("Metal Scrap");//saves collectible to the txt as metal scrap
+        
     }//GEN-LAST:event_scrapLblMouseClicked
 
     private void background1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_background1MouseClicked
@@ -223,13 +225,8 @@ public class MidLvl1GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBtnActionPerformed
     
     private void saveProgress(String collectibleName) {
-        try(java.io.BufferedWriter bw = new java.io.BufferedWriter(new java.io.FileWriter("CollectiblesProgress.txt", true))) {
-            bw.write(collectibleName + " collected in MidLvl1");
-            bw.newLine();
-            javax.swing.JOptionPane.showMessageDialog(this, "Progress saved successfully!");
-        } catch(java.io.IOException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        }
+        Progress progress = new Progress("CollectiblesProgress.txt");
+        progress.saveCollectible(collectibleName, "MidLvl1");
     }
 
     /**
