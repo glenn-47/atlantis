@@ -17,6 +17,7 @@ public class SurfaceLvlGUI extends javax.swing.JFrame {
      */
     public SurfaceLvlGUI() {
         initComponents();
+        jButton2.setVisible(false); //done temp for individual submission due to time constraints, was essentially the same as burns!
     }
 
     /**

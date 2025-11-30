@@ -4,12 +4,17 @@
  */
 package oopproj;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Andrew
  */
 public class OilGUI extends javax.swing.JFrame {
-    
+
+    int isOil;
+    ArrayList<String> waterTreatment = new ArrayList<>();
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(OilGUI.class.getName());
 
     /**
@@ -17,6 +22,14 @@ public class OilGUI extends javax.swing.JFrame {
      */
     public OilGUI() {
         initComponents();
+        jProgressBar1.setMinimum(0);
+        jProgressBar1.setMaximum(9);//num of oil tiles they gotta click
+        jProgressBar1.setValue(0);   
+
+    }
+
+    public ArrayList<String> getWaterTreatment() {
+        return waterTreatment;
     }
 
     /**
@@ -28,6 +41,7 @@ public class OilGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        checkBTN = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
         jToggleButton3 = new javax.swing.JToggleButton();
@@ -36,28 +50,28 @@ public class OilGUI extends javax.swing.JFrame {
         jToggleButton6 = new javax.swing.JToggleButton();
         jToggleButton7 = new javax.swing.JToggleButton();
         jToggleButton8 = new javax.swing.JToggleButton();
-        jToggleButton9 = new javax.swing.JToggleButton();
+        oilToggleBTN = new javax.swing.JToggleButton();
         jToggleButton10 = new javax.swing.JToggleButton();
-        jToggleButton11 = new javax.swing.JToggleButton();
-        jToggleButton12 = new javax.swing.JToggleButton();
+        oilToggleBTN8 = new javax.swing.JToggleButton();
+        oilToggleBTN6 = new javax.swing.JToggleButton();
         jToggleButton13 = new javax.swing.JToggleButton();
         jToggleButton14 = new javax.swing.JToggleButton();
-        jToggleButton15 = new javax.swing.JToggleButton();
+        oilToggleBTN5 = new javax.swing.JToggleButton();
         jToggleButton16 = new javax.swing.JToggleButton();
         jToggleButton17 = new javax.swing.JToggleButton();
         jToggleButton18 = new javax.swing.JToggleButton();
         jToggleButton19 = new javax.swing.JToggleButton();
         jToggleButton20 = new javax.swing.JToggleButton();
         jToggleButton21 = new javax.swing.JToggleButton();
-        jToggleButton22 = new javax.swing.JToggleButton();
-        jToggleButton23 = new javax.swing.JToggleButton();
+        oilToggleBTN2 = new javax.swing.JToggleButton();
+        oilToggleBTN7 = new javax.swing.JToggleButton();
         jToggleButton24 = new javax.swing.JToggleButton();
         jToggleButton25 = new javax.swing.JToggleButton();
         jToggleButton26 = new javax.swing.JToggleButton();
-        jToggleButton27 = new javax.swing.JToggleButton();
+        oilToggleBTN3 = new javax.swing.JToggleButton();
         jToggleButton28 = new javax.swing.JToggleButton();
-        jToggleButton29 = new javax.swing.JToggleButton();
-        jToggleButton30 = new javax.swing.JToggleButton();
+        oilToggleBTN9 = new javax.swing.JToggleButton();
+        oilToggleBTN4 = new javax.swing.JToggleButton();
         jToggleButton31 = new javax.swing.JToggleButton();
         jToggleButton32 = new javax.swing.JToggleButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -71,6 +85,14 @@ public class OilGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        checkBTN.setText("Done");
+        checkBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBTNActionPerformed(evt);
+            }
+        });
+        getContentPane().add(checkBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, 70));
 
         jToggleButton1.setBackground(new java.awt.Color(0, 153, 204));
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -136,13 +158,13 @@ public class OilGUI extends javax.swing.JFrame {
         });
         getContentPane().add(jToggleButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 412, 100, 100));
 
-        jToggleButton9.setBackground(new java.awt.Color(51, 51, 51));
-        jToggleButton9.addActionListener(new java.awt.event.ActionListener() {
+        oilToggleBTN.setBackground(new java.awt.Color(51, 51, 51));
+        oilToggleBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton9ActionPerformed(evt);
+                oilToggleBTNActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 306, 100, 100));
+        getContentPane().add(oilToggleBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 306, 100, 100));
 
         jToggleButton10.setBackground(new java.awt.Color(0, 153, 204));
         jToggleButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -152,21 +174,21 @@ public class OilGUI extends javax.swing.JFrame {
         });
         getContentPane().add(jToggleButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 200, 100, 100));
 
-        jToggleButton11.setBackground(new java.awt.Color(51, 51, 51));
-        jToggleButton11.addActionListener(new java.awt.event.ActionListener() {
+        oilToggleBTN8.setBackground(new java.awt.Color(51, 51, 51));
+        oilToggleBTN8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton11ActionPerformed(evt);
+                oilToggleBTN8ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 518, 100, 100));
+        getContentPane().add(oilToggleBTN8, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 518, 100, 100));
 
-        jToggleButton12.setBackground(new java.awt.Color(51, 51, 51));
-        jToggleButton12.addActionListener(new java.awt.event.ActionListener() {
+        oilToggleBTN6.setBackground(new java.awt.Color(51, 51, 51));
+        oilToggleBTN6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton12ActionPerformed(evt);
+                oilToggleBTN6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 412, 100, 100));
+        getContentPane().add(oilToggleBTN6, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 412, 100, 100));
 
         jToggleButton13.setBackground(new java.awt.Color(0, 153, 204));
         jToggleButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -184,13 +206,13 @@ public class OilGUI extends javax.swing.JFrame {
         });
         getContentPane().add(jToggleButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 306, 100, 100));
 
-        jToggleButton15.setBackground(new java.awt.Color(51, 51, 51));
-        jToggleButton15.addActionListener(new java.awt.event.ActionListener() {
+        oilToggleBTN5.setBackground(new java.awt.Color(51, 51, 51));
+        oilToggleBTN5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton15ActionPerformed(evt);
+                oilToggleBTN5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 412, 100, 100));
+        getContentPane().add(oilToggleBTN5, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 412, 100, 100));
 
         jToggleButton16.setBackground(new java.awt.Color(0, 153, 204));
         jToggleButton16.addActionListener(new java.awt.event.ActionListener() {
@@ -240,21 +262,21 @@ public class OilGUI extends javax.swing.JFrame {
         });
         getContentPane().add(jToggleButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 100, 100));
 
-        jToggleButton22.setBackground(new java.awt.Color(51, 51, 51));
-        jToggleButton22.addActionListener(new java.awt.event.ActionListener() {
+        oilToggleBTN2.setBackground(new java.awt.Color(51, 51, 51));
+        oilToggleBTN2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton22ActionPerformed(evt);
+                oilToggleBTN2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 306, 100, 100));
+        getContentPane().add(oilToggleBTN2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 306, 100, 100));
 
-        jToggleButton23.setBackground(new java.awt.Color(51, 51, 51));
-        jToggleButton23.addActionListener(new java.awt.event.ActionListener() {
+        oilToggleBTN7.setBackground(new java.awt.Color(51, 51, 51));
+        oilToggleBTN7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton23ActionPerformed(evt);
+                oilToggleBTN7ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 412, 100, 100));
+        getContentPane().add(oilToggleBTN7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 412, 100, 100));
 
         jToggleButton24.setBackground(new java.awt.Color(0, 153, 204));
         jToggleButton24.addActionListener(new java.awt.event.ActionListener() {
@@ -280,13 +302,13 @@ public class OilGUI extends javax.swing.JFrame {
         });
         getContentPane().add(jToggleButton26, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 412, 100, 100));
 
-        jToggleButton27.setBackground(new java.awt.Color(51, 51, 51));
-        jToggleButton27.addActionListener(new java.awt.event.ActionListener() {
+        oilToggleBTN3.setBackground(new java.awt.Color(51, 51, 51));
+        oilToggleBTN3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton27ActionPerformed(evt);
+                oilToggleBTN3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton27, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 306, 100, 100));
+        getContentPane().add(oilToggleBTN3, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 306, 100, 100));
 
         jToggleButton28.setBackground(new java.awt.Color(0, 153, 204));
         jToggleButton28.addActionListener(new java.awt.event.ActionListener() {
@@ -296,21 +318,21 @@ public class OilGUI extends javax.swing.JFrame {
         });
         getContentPane().add(jToggleButton28, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 200, 100, 100));
 
-        jToggleButton29.setBackground(new java.awt.Color(51, 51, 51));
-        jToggleButton29.addActionListener(new java.awt.event.ActionListener() {
+        oilToggleBTN9.setBackground(new java.awt.Color(51, 51, 51));
+        oilToggleBTN9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton29ActionPerformed(evt);
+                oilToggleBTN9ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton29, new org.netbeans.lib.awtextra.AbsoluteConstraints(748, 518, 100, 100));
+        getContentPane().add(oilToggleBTN9, new org.netbeans.lib.awtextra.AbsoluteConstraints(748, 518, 100, 100));
 
-        jToggleButton30.setBackground(new java.awt.Color(51, 51, 51));
-        jToggleButton30.addActionListener(new java.awt.event.ActionListener() {
+        oilToggleBTN4.setBackground(new java.awt.Color(51, 51, 51));
+        oilToggleBTN4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton30ActionPerformed(evt);
+                oilToggleBTN4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton30, new org.netbeans.lib.awtextra.AbsoluteConstraints(748, 200, 100, 100));
+        getContentPane().add(oilToggleBTN4, new org.netbeans.lib.awtextra.AbsoluteConstraints(748, 200, 100, 100));
 
         jToggleButton31.setBackground(new java.awt.Color(0, 153, 204));
         jToggleButton31.addActionListener(new java.awt.event.ActionListener() {
@@ -376,10 +398,12 @@ public class OilGUI extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
@@ -406,21 +430,36 @@ public class OilGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton8ActionPerformed
 
-    private void jToggleButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton9ActionPerformed
+    private void oilToggleBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oilToggleBTNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton9ActionPerformed
+        if (oilToggleBTN.isSelected()) {
+            waterTreatment.add("oilTile");
+        } else {
+            waterTreatment.remove("oilTile");
+        }
+    }//GEN-LAST:event_oilToggleBTNActionPerformed
 
     private void jToggleButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton10ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton10ActionPerformed
 
-    private void jToggleButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton11ActionPerformed
+    private void oilToggleBTN8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oilToggleBTN8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton11ActionPerformed
+        if (oilToggleBTN8.isSelected()) {
+            waterTreatment.add("oilTile");
+        } else {
+            waterTreatment.remove("oilTile");
+        }
+    }//GEN-LAST:event_oilToggleBTN8ActionPerformed
 
-    private void jToggleButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton12ActionPerformed
+    private void oilToggleBTN6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oilToggleBTN6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton12ActionPerformed
+        if (oilToggleBTN6.isSelected()) {
+            waterTreatment.add("oilTile");
+        } else {
+            waterTreatment.remove("oilTile");
+        }
+    }//GEN-LAST:event_oilToggleBTN6ActionPerformed
 
     private void jToggleButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton13ActionPerformed
         // TODO add your handling code here:
@@ -430,12 +469,22 @@ public class OilGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton14ActionPerformed
 
-    private void jToggleButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton15ActionPerformed
+    private void oilToggleBTN5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oilToggleBTN5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton15ActionPerformed
+        if (oilToggleBTN5.isSelected()) {
+            waterTreatment.add("oilTile");
+        } else {
+            waterTreatment.remove("oilTile");
+        }
+    }//GEN-LAST:event_oilToggleBTN5ActionPerformed
 
     private void jToggleButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton16ActionPerformed
         // TODO add your handling code here:
+        if (oilToggleBTN6.isSelected()) {
+            waterTreatment.add("oilTile");
+        } else {
+            waterTreatment.remove("oilTile");
+        }
     }//GEN-LAST:event_jToggleButton16ActionPerformed
 
     private void jToggleButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton17ActionPerformed
@@ -458,13 +507,23 @@ public class OilGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton21ActionPerformed
 
-    private void jToggleButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton22ActionPerformed
+    private void oilToggleBTN2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oilToggleBTN2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton22ActionPerformed
+        if (oilToggleBTN2.isSelected()) {
+            waterTreatment.add("oilTile");
+        } else {
+            waterTreatment.remove("oilTile");
+        }
+    }//GEN-LAST:event_oilToggleBTN2ActionPerformed
 
-    private void jToggleButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton23ActionPerformed
+    private void oilToggleBTN7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oilToggleBTN7ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton23ActionPerformed
+        if (oilToggleBTN7.isSelected()) {
+            waterTreatment.add("oilTile");
+        } else {
+            waterTreatment.remove("oilTile");
+        }
+    }//GEN-LAST:event_oilToggleBTN7ActionPerformed
 
     private void jToggleButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton24ActionPerformed
         // TODO add your handling code here:
@@ -478,21 +537,36 @@ public class OilGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton26ActionPerformed
 
-    private void jToggleButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton27ActionPerformed
+    private void oilToggleBTN3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oilToggleBTN3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton27ActionPerformed
+        if (oilToggleBTN3.isSelected()) {
+            waterTreatment.add("oilTile");
+        } else {
+            waterTreatment.remove("oilTile");
+        }
+    }//GEN-LAST:event_oilToggleBTN3ActionPerformed
 
     private void jToggleButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton28ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton28ActionPerformed
 
-    private void jToggleButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton29ActionPerformed
+    private void oilToggleBTN9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oilToggleBTN9ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton29ActionPerformed
+        if (oilToggleBTN9.isSelected()) {
+            waterTreatment.add("oilTile");
+        } else {
+            waterTreatment.remove("oilTile");
+        }
+    }//GEN-LAST:event_oilToggleBTN9ActionPerformed
 
-    private void jToggleButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton30ActionPerformed
+    private void oilToggleBTN4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oilToggleBTN4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton30ActionPerformed
+        if (oilToggleBTN4.isSelected()) {
+            waterTreatment.add("oilTile");
+        } else {
+            waterTreatment.remove("oilTile");
+        }
+    }//GEN-LAST:event_oilToggleBTN4ActionPerformed
 
     private void jToggleButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton31ActionPerformed
         // TODO add your handling code here:
@@ -508,6 +582,22 @@ public class OilGUI extends javax.swing.JFrame {
         surface2.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_returnBTNActionPerformed
+
+    private void checkBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBTNActionPerformed
+        // TODO add your handling code here:
+
+        for (String treated : waterTreatment) {
+            if ("oilTile".equals(treated)) {
+                isOil++;
+                System.out.println(isOil);
+            }
+        }
+
+        System.out.println(waterTreatment);
+        OilProgress.TreatmentProcess(waterTreatment, jProgressBar1);
+
+
+    }//GEN-LAST:event_checkBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -535,6 +625,7 @@ public class OilGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton checkBTN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -542,11 +633,8 @@ public class OilGUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton10;
-    private javax.swing.JToggleButton jToggleButton11;
-    private javax.swing.JToggleButton jToggleButton12;
     private javax.swing.JToggleButton jToggleButton13;
     private javax.swing.JToggleButton jToggleButton14;
-    private javax.swing.JToggleButton jToggleButton15;
     private javax.swing.JToggleButton jToggleButton16;
     private javax.swing.JToggleButton jToggleButton17;
     private javax.swing.JToggleButton jToggleButton18;
@@ -554,16 +642,11 @@ public class OilGUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton20;
     private javax.swing.JToggleButton jToggleButton21;
-    private javax.swing.JToggleButton jToggleButton22;
-    private javax.swing.JToggleButton jToggleButton23;
     private javax.swing.JToggleButton jToggleButton24;
     private javax.swing.JToggleButton jToggleButton25;
     private javax.swing.JToggleButton jToggleButton26;
-    private javax.swing.JToggleButton jToggleButton27;
     private javax.swing.JToggleButton jToggleButton28;
-    private javax.swing.JToggleButton jToggleButton29;
     private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton30;
     private javax.swing.JToggleButton jToggleButton31;
     private javax.swing.JToggleButton jToggleButton32;
     private javax.swing.JToggleButton jToggleButton4;
@@ -571,7 +654,15 @@ public class OilGUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton6;
     private javax.swing.JToggleButton jToggleButton7;
     private javax.swing.JToggleButton jToggleButton8;
-    private javax.swing.JToggleButton jToggleButton9;
+    private javax.swing.JToggleButton oilToggleBTN;
+    private javax.swing.JToggleButton oilToggleBTN2;
+    private javax.swing.JToggleButton oilToggleBTN3;
+    private javax.swing.JToggleButton oilToggleBTN4;
+    private javax.swing.JToggleButton oilToggleBTN5;
+    private javax.swing.JToggleButton oilToggleBTN6;
+    private javax.swing.JToggleButton oilToggleBTN7;
+    private javax.swing.JToggleButton oilToggleBTN8;
+    private javax.swing.JToggleButton oilToggleBTN9;
     private javax.swing.JButton returnBTN;
     private javax.swing.JLabel roomTitleLBL;
     // End of variables declaration//GEN-END:variables
