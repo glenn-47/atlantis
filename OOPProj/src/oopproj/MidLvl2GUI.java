@@ -26,6 +26,7 @@ public class MidLvl2GUI extends javax.swing.JFrame {
             collectibleSystem = new CollectibleSystem();//wont work if this if statement with creating collectible system doesnt exist
         }
         collectibleSystem.createCollectible(shipLbl, "Ship Wreck");
+        //https://clipart-library.com/clipart/shipwreck-cliparts-4.htm
         
         // checks for collectible if it was already found by reading the file
         loadCollectedItems();
@@ -148,7 +149,8 @@ public class MidLvl2GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_leftArrowMouseClicked
 
     private void displayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBtnActionPerformed
-        // TODO add your handling code here://insipiraion from lecture notes
+        // TODO add your handling code here:
+        // //insipiraion from lecture notes
         try(java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("CollectiblesProgress.txt"))) {
             String item;
             StringBuilder message = new StringBuilder("Collected Items:\n");

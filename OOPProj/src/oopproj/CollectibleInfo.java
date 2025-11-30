@@ -11,12 +11,11 @@ package oopproj;
 public class CollectibleInfo {
     
     private String name;
-    private String description;
+    
     private String location;
     
-    public CollectibleInfo(String name, String description, String location) {
+    public CollectibleInfo(String name, String location) {
         this.name = name;
-        this.description = description;
         this.location = location;
     }
     
@@ -24,15 +23,11 @@ public class CollectibleInfo {
         return name;
     }
     
-    public String getDescription() {
-        return description;
-    }
+   
     
     public String getLocation() {
         return location;
     }
     
-    public String getFullInfo() {
-        return name + " - " + description;
-    }
+   
 }

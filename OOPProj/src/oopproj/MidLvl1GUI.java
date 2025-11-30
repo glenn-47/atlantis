@@ -29,6 +29,8 @@ public class MidLvl1GUI extends javax.swing.JFrame {
         }
         collectibleSystem.createCollectible(barrelLbl, "Barrel");//creates collectible with label name and string name
         collectibleSystem.createCollectible(scrapLbl, "Metal Scrap");
+        //http://www.clker.com/clipart-24857.html
+        //https://clipart-library.com/clipart/cliparts-metal-scraps_8.htm
         
         //checks for collectibles if they were already found by reading the file
         loadCollectedItems();
@@ -190,7 +192,8 @@ public class MidLvl1GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_rightArrowMouseClicked
 
     private void displayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBtnActionPerformed
-        // TODO add your handling code here://insipiration  from lecture notes
+        // TODO add your handling code here:
+        // //insipiration  from lecture notes
         try(java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("CollectiblesProgress.txt"))) {//reads the file
             String item;
             StringBuilder message = new StringBuilder("Collected Items:\n");//creates text "Collected Items:"\n is used to skip to a new line
@@ -223,7 +226,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "Error clearing file: " + e.getMessage());
         }
     }//GEN-LAST:event_deleteBtnActionPerformed
-    
+    //saves collectibles to txt file
     private void saveProgress(String collectibleName) {
         Progress progress = new Progress("CollectiblesProgress.txt");
         progress.saveCollectible(collectibleName, "MidLvl1");

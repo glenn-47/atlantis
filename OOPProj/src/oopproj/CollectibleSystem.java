@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author mncrf
  */
 public class CollectibleSystem {
-    
+    //HashMap references:     https://www.w3schools.com/java/java_hashmap.asp     https://stackoverflow.com/search?q=hashmap+Jlabel&s=9db40bc5-4dec-410e-81f9-9ad0234332a1   https://youtu.be/H62Jfv1DJlU?si=ilf8Ebp2xi30-DaT
     private ArrayList<JLabel> collectibles= new ArrayList<>();
     private HashMap<JLabel, String> labelNames;
     
