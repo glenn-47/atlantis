@@ -4,40 +4,32 @@
  */
 package oopproj;
 
+public class CleanupTask {
 
-import java.io.Serializable;
+    protected int id;
+    protected String location;
+    protected String wasteType;
+    protected String difficulty;
+    protected boolean done;
 
-public class CleanupTask implements Serializable {
-
-    private String location;
-    private String wasteType;
-    private String difficulty;
-    private boolean completed;
-
-    public CleanupTask(String location, String wasteType, String difficulty) {
+    public CleanupTask(int id, String location, String wasteType, String difficulty) {
+        this.id = id;
         this.location = location;
         this.wasteType = wasteType;
         this.difficulty = difficulty;
-        this.completed = false;
+        this.done = false;
     }
 
-    public String getLocation() {
-        return location;
-    }
+    public int getId() { return id; }
+    public String getLocation() { return location; }
+    public String getWasteType() { return wasteType; }
+    public String getDifficulty() { return difficulty; }
+    public boolean isDone() { return done; }
 
-    public String getWasteType() {
-        return wasteType;
-    }
+    public void markDone() { this.done = true; }
 
-    public String getDifficulty() {
-        return difficulty;
-    }
-
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
+    
+    public String getCategory() {
+        return "Standard beach cleanup task.";
     }
 }
