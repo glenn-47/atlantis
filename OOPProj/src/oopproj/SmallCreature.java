@@ -5,22 +5,18 @@
 package oopproj;
 
 /**
- * Represents smaller deep sea creatures
- * Inheritance - extends the abstract creature class
+ *
  * @author glenn
  */
 
 public class SmallCreature extends Creature {
-    // Variables
-    private final String diet;
-    
-    // Constructor - passes data to the super class
+    private String diet;
+
     public SmallCreature(String name, String desc, String path, String diet) {
         super(name, desc, path);
         this.diet = diet;
     }
-    
-    // Polymorphism - overrides the abstract method
+
     @Override
     public String getStats() {
         return "DIET TYPE: " + diet;
