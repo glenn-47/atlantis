@@ -11,16 +11,48 @@ package oopproj;
 public class MidLvl2GUI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MidLvl2GUI.class.getName());
-    private CollectibleSystem collectibleSystem; 
+    private static CollectibleSystem collectibleSystem;
     /**
      * Creates new form MidLvl2GUI
      */
     public MidLvl2GUI() {
         initComponents();
+        collectibleSetup();
     }
     
     private void collectibleSetup(){
-        collectibleSystem= new CollectibleSystem();
+        collectibleSystem = MidLvl1GUI.getCollectibleSystem();//allows the collectibles to sync
+        if (collectibleSystem == null) {//creates new collectible system when its empty
+            collectibleSystem = new CollectibleSystem();//wont work if this if statement with creating collectible system doesnt exist
+        }
+        collectibleSystem.createCollectible(shipLbl, "Ship Wreck");
+        //https://clipart-library.com/clipart/shipwreck-cliparts-4.htm
+        
+        // checks for collectible if it was already found by reading the file
+        loadCollectedItems();
+        
+        updateProgressBar();//updates Bar when found
+    }
+    
+    private void updateProgressBar(){
+        colCounter.setMaximum(3);//3 collectibles in both GUI's, thats why max is 3
+        colCounter.setValue(collectibleSystem.getCollectionCount());//makes progress bar full wehn 3 collectibles collected, syncs with alll collectibles
+    }
+    
+    private void loadCollectedItems() {
+        try(java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("CollectiblesProgress.txt"))) {
+            String line;
+            while((line = br.readLine()) != null) {
+                if(line.contains("Ship Wreck") && line.contains("MidLvl2")) {
+                    if(!collectibleSystem.isCollected(shipLbl)) {//prevents progress bar duplication and message popups
+                        collectibleSystem.getCollectedItems().add(shipLbl);
+                    }
+                    shipLbl.setVisible(false);
+                }
+            }
+        } catch(java.io.IOException e) {
+            // File doesn't exist yet, no items collected
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,13 +64,14 @@ public class MidLvl2GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         mainBtn = new javax.swing.JButton();
-        ShipLbl = new javax.swing.JLabel();
+        shipLbl = new javax.swing.JLabel();
         leftArrow = new javax.swing.JLabel();
-        ColCounter = new javax.swing.JProgressBar();
-        jLabel1 = new javax.swing.JLabel();
+        colCounter = new javax.swing.JProgressBar();
+        displayBtn = new javax.swing.JButton();
+        deleteBtn = new javax.swing.JButton();
+        background2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mainBtn.setText("MainMenu");
@@ -47,15 +80,15 @@ public class MidLvl2GUI extends javax.swing.JFrame {
                 mainBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(mainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
+        getContentPane().add(mainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        ShipLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C3 (2).png"))); // NOI18N
-        ShipLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        shipLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C3 (2).png"))); // NOI18N
+        shipLbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ShipLblMouseClicked(evt);
+                shipLblMouseClicked(evt);
             }
         });
-        getContentPane().add(ShipLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 360, 110, 90));
+        getContentPane().add(shipLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 360, 110, 90));
 
         leftArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/Arrow1.png"))); // NOI18N
         leftArrow.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -64,14 +97,30 @@ public class MidLvl2GUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(leftArrow, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 100, 100));
-        getContentPane().add(ColCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, -1, -1));
+        getContentPane().add(colCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(838, 40, 140, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/midImg2.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jLabel1.setMaximumSize(new java.awt.Dimension(1000, 500));
-        jLabel1.setMinimumSize(new java.awt.Dimension(1000, 500));
-        jLabel1.setPreferredSize(new java.awt.Dimension(1000, 500));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 540));
+        displayBtn.setText("View Collectibles");
+        displayBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(displayBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, -1, -1));
+
+        deleteBtn.setText("Reset");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, -1));
+
+        background2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/midImg2.png"))); // NOI18N
+        background2.setText("jLabel1");
+        background2.setMaximumSize(new java.awt.Dimension(1000, 500));
+        background2.setMinimumSize(new java.awt.Dimension(1000, 500));
+        background2.setPreferredSize(new java.awt.Dimension(1000, 500));
+        getContentPane().add(background2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -83,12 +132,13 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_mainBtnActionPerformed
 
-    private void ShipLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ShipLblMouseClicked
+    private void shipLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_shipLblMouseClicked
         // TODO add your handling code here:
         //https://clipart-library.com/clipart/shipwreck-cliparts-4.htm
-        ShipLbl.setVisible(false);
-        collectibleSystem.createCollectible(ShipLbl, "Ship Wreck");
-    }//GEN-LAST:event_ShipLblMouseClicked
+        collectibleSystem.collectCollectible(shipLbl);//collectbile collected
+        updateProgressBar();
+        saveProgress("Ship Wreck");//saves collectbile and Ship wreck to the txt
+    }//GEN-LAST:event_shipLblMouseClicked
 
     private void leftArrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_leftArrowMouseClicked
         // TODO add your handling code here:
@@ -96,6 +146,45 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         Mid1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_leftArrowMouseClicked
+
+    private void displayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBtnActionPerformed
+        // TODO add your handling code here:
+        // //insipiraion from lecture notes
+        try(java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("CollectiblesProgress.txt"))) {
+            String item;
+            StringBuilder message = new StringBuilder("Collected Items:\n");
+            item = br.readLine();
+            while(item != null) {
+                message.append(item).append("\n");
+                item = br.readLine();
+            }
+            javax.swing.JOptionPane.showMessageDialog(this, message.toString());
+        } catch(java.io.IOException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "An error occurred while reading the file: " + e.getMessage());
+        }
+        
+    }//GEN-LAST:event_displayBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        deleteProgress();
+    }//GEN-LAST:event_deleteBtnActionPerformed
+    
+    private void deleteProgress() {
+        Progress progress = new Progress("CollectiblesProgress.txt");
+        progress.clearProgress();
+        if(collectibleSystem != null) {
+            collectibleSystem.resetCollectibles();
+        }
+        MainMenuGUI mainGUI = new MainMenuGUI();
+        mainGUI.setVisible(true);
+        this.dispose();
+    }
+    
+    private void saveProgress(String collectibleName) {
+        Progress progressHandler = new Progress("CollectiblesProgress.txt");
+        progressHandler.saveCollectible(collectibleName, "MidLvl2");
+    }
 
     /**
      * @param args the command line arguments
@@ -123,10 +212,12 @@ public class MidLvl2GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JProgressBar ColCounter;
-    private javax.swing.JLabel ShipLbl;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel background2;
+    private javax.swing.JProgressBar colCounter;
+    private javax.swing.JButton deleteBtn;
+    private javax.swing.JButton displayBtn;
     private javax.swing.JLabel leftArrow;
     private javax.swing.JButton mainBtn;
+    private javax.swing.JLabel shipLbl;
     // End of variables declaration//GEN-END:variables
 }
