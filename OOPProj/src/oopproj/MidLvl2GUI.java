@@ -129,7 +129,7 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         background2.setMaximumSize(new java.awt.Dimension(1000, 500));
         background2.setMinimumSize(new java.awt.Dimension(1000, 500));
         background2.setPreferredSize(new java.awt.Dimension(1000, 500));
-        getContentPane().add(background2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 540));
+        getContentPane().add(background2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1000, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
