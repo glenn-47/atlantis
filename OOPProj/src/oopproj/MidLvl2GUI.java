@@ -69,6 +69,7 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         colCounter = new javax.swing.JProgressBar();
         displayBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
+        closeBtn = new javax.swing.JButton();
         background2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -114,6 +115,14 @@ public class MidLvl2GUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, -1));
+
+        closeBtn.setText("Close App");
+        closeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(closeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
         background2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/midImg2.png"))); // NOI18N
         background2.setText("jLabel1");
@@ -169,6 +178,12 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         deleteProgress();
     }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+        // TODO add your handling code here:
+        //Closes the App
+        System.exit(0);
+    }//GEN-LAST:event_closeBtnActionPerformed
     
     private void deleteProgress() {
         Progress progress = new Progress("CollectiblesProgress.txt");
@@ -213,6 +228,7 @@ public class MidLvl2GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background2;
+    private javax.swing.JButton closeBtn;
     private javax.swing.JProgressBar colCounter;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton displayBtn;

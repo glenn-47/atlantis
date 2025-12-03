@@ -85,6 +85,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
         displayBtn = new javax.swing.JButton();
         colCounter = new javax.swing.JProgressBar();
         deleteBtn = new javax.swing.JButton();
+        CloseBtn = new javax.swing.JButton();
         background1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -139,6 +140,14 @@ public class MidLvl1GUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, -1, -1));
+
+        CloseBtn.setText("Close App");
+        CloseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CloseBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(CloseBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
 
         background1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/midImg1.jpeg"))); // NOI18N
         background1.setText("jLabel1");
@@ -226,6 +235,12 @@ public class MidLvl1GUI extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "Error clearing file: " + e.getMessage());
         }
     }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void CloseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseBtnActionPerformed
+        // TODO add your handling code here:
+        //closes the App
+        System.exit(0);
+    }//GEN-LAST:event_CloseBtnActionPerformed
     //saves collectibles to txt file
     private void saveProgress(String collectibleName) {
         Progress progress = new Progress("CollectiblesProgress.txt");
@@ -258,6 +273,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CloseBtn;
     private javax.swing.JLabel background1;
     private javax.swing.JLabel barrelLbl;
     private javax.swing.JProgressBar colCounter;
