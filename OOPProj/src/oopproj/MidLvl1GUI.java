@@ -85,11 +85,10 @@ public class MidLvl1GUI extends javax.swing.JFrame {
         displayBtn = new javax.swing.JButton();
         colCounter = new javax.swing.JProgressBar();
         deleteBtn = new javax.swing.JButton();
-        CloseBtn = new javax.swing.JButton();
         background1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(900, 500));
+        setMinimumSize(new java.awt.Dimension(831, 558));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mainBtn.setText("MainMenu");
@@ -98,7 +97,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
                 mainBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(mainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        getContentPane().add(mainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         barrelLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C1.png"))); // NOI18N
         barrelLbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -130,8 +129,8 @@ public class MidLvl1GUI extends javax.swing.JFrame {
                 displayBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(displayBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, -1, -1));
-        getContentPane().add(colCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 60, 140, -1));
+        getContentPane().add(displayBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 20, -1, -1));
+        getContentPane().add(colCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, 140, -1));
 
         deleteBtn.setText("Reset");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -139,15 +138,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
                 deleteBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, -1, -1));
-
-        CloseBtn.setText("Close App");
-        CloseBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CloseBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(CloseBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
+        getContentPane().add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, -1, -1));
 
         background1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/midImg1.jpeg"))); // NOI18N
         background1.setText("jLabel1");
@@ -157,7 +148,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
                 background1MouseClicked(evt);
             }
         });
-        getContentPane().add(background1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 937, 545));
+        getContentPane().add(background1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -20, 950, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -273,7 +264,6 @@ public class MidLvl1GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CloseBtn;
     private javax.swing.JLabel background1;
     private javax.swing.JLabel barrelLbl;
     private javax.swing.JProgressBar colCounter;
