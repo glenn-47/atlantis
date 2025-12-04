@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class CollectibleSystem {
     
     private ArrayList<JLabel> collectibles= new ArrayList<>();
-    private HashMap<JLabel, String> labelNames;
+    private HashMap<JLabel, String> labelNames;//hashmap finds out name of the Label so its able to hide and be saved to the collectible txt file
     
     public CollectibleSystem() {
         this.collectibles=new ArrayList<>();
@@ -38,9 +38,7 @@ public class CollectibleSystem {
     
 }
 
-    /**
-     * Collect a label silently (no popup). Used when restoring state from storage.
-     */
+    
     
     public void collectCollectibleSilent(JLabel label) {
         if (!collectibles.contains(label)) {

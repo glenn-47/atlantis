@@ -20,7 +20,7 @@ public class Progress {
     public Progress(String fileName) {
         this.fileName = fileName;
     }
-    
+    //creates save file which will be named CollectiblesProgress
     public void saveCollectible(String collectibleName, String location) {
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {
             bw.write(collectibleName + " collected in " + location);
@@ -29,7 +29,7 @@ public class Progress {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
     }
-    
+    //rewrites the lines to blank and acts as a Progress delete 
     public void clearProgress() {
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, false))) {
             bw.write("");
