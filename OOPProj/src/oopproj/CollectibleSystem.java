@@ -38,6 +38,17 @@ public class CollectibleSystem {
     
 }
 
+    /**
+     * Collect a label silently (no popup). Used when restoring state from storage.
+     */
+    
+    public void collectCollectibleSilent(JLabel label) {
+        if (!collectibles.contains(label)) {
+            collectibles.add(label);
+            label.setVisible(false);
+        }
+    }
+
    public ArrayList<JLabel> getCollectedItems() {
         return new ArrayList<>(collectibles);//shows collected collectibles (inventory)
     }

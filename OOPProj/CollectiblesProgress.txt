@@ -1,1 +1,2 @@
 Barrel collected in MidLvl1
+Turtle collected in MidLvl2

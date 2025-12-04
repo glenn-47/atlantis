@@ -26,6 +26,8 @@ public class MidLvl2GUI extends javax.swing.JFrame {
             collectibleSystem = new CollectibleSystem();//wont work if this if statement with creating collectible system doesnt exist
         }
         collectibleSystem.createCollectible(shipLbl, "Ship Wreck");
+        collectibleSystem.createCollectible(turtleLbl, "Injured Turtle");
+        
         //https://clipart-library.com/clipart/shipwreck-cliparts-4.htm
         
         // checks for collectible if it was already found by reading the file
@@ -35,19 +37,25 @@ public class MidLvl2GUI extends javax.swing.JFrame {
     }
     
     private void updateProgressBar(){
-        colCounter.setMaximum(3);//3 collectibles in both GUI's, thats why max is 3
-        colCounter.setValue(collectibleSystem.getCollectionCount());//makes progress bar full wehn 3 collectibles collected, syncs with alll collectibles
+        colCounter.setMaximum(4);//4 collectibles in both GUI's, thats why max is 4
+        colCounter.setValue(collectibleSystem.getCollectionCount());//makes progress bar full when 4 collectibles collected, syncs with alll collectibles
     }
     
-    private void loadCollectedItems() {
+    private void loadCollectedItems() {//allows collectibles to be hidden when found and returned to the Coral Reef before closing the app.
         try(java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("CollectiblesProgress.txt"))) {
             String line;
             while((line = br.readLine()) != null) {
                 if(line.contains("Ship Wreck") && line.contains("MidLvl2")) {
                     if(!collectibleSystem.isCollected(shipLbl)) {//prevents progress bar duplication and message popups
-                        collectibleSystem.getCollectedItems().add(shipLbl);
+                        collectibleSystem.collectCollectibleSilent(shipLbl);
                     }
                     shipLbl.setVisible(false);
+                }
+                 if(line.contains("Injured Turtle") && line.contains("MidLvl2")) {//searches line Injured Turtle to correctly hide collected collectibles
+                    if(!collectibleSystem.isCollected(turtleLbl)) {//prevents progress bar duplication and message popups
+                        collectibleSystem.collectCollectibleSilent(turtleLbl);
+                    }
+                    turtleLbl.setVisible(false);
                 }
             }
         } catch(java.io.IOException e) {
@@ -69,7 +77,7 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         colCounter = new javax.swing.JProgressBar();
         displayBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
-        closeBtn = new javax.swing.JButton();
+        turtleLbl = new javax.swing.JLabel();
         background2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -116,13 +124,13 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         });
         getContentPane().add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, -1));
 
-        closeBtn.setText("Close App");
-        closeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeBtnActionPerformed(evt);
+        turtleLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/Adobe Express - file (3).png"))); // NOI18N
+        turtleLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                turtleLblMouseClicked(evt);
             }
         });
-        getContentPane().add(closeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+        getContentPane().add(turtleLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 250, 100));
 
         background2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/midImg2.png"))); // NOI18N
         background2.setText("jLabel1");
@@ -179,11 +187,13 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         deleteProgress();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
-    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+    private void turtleLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_turtleLblMouseClicked
         // TODO add your handling code here:
-        //Closes the App
-        System.exit(0);
-    }//GEN-LAST:event_closeBtnActionPerformed
+        //https://www.dreamstime.com/brown-sea-turtle-icon-cartoon-stuck-sixpack-ring-plastic-isolated-vector-illustration-graphic-design-image149672385
+        collectibleSystem.collectCollectible(turtleLbl);//collectbile collected
+        updateProgressBar();
+        saveProgress("Turtle");//saves collectible and turtle to the txt
+    }//GEN-LAST:event_turtleLblMouseClicked
     
     private void deleteProgress() {
         Progress progress = new Progress("CollectiblesProgress.txt");
@@ -228,12 +238,12 @@ public class MidLvl2GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background2;
-    private javax.swing.JButton closeBtn;
     private javax.swing.JProgressBar colCounter;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton displayBtn;
     private javax.swing.JLabel leftArrow;
     private javax.swing.JButton mainBtn;
     private javax.swing.JLabel shipLbl;
+    private javax.swing.JLabel turtleLbl;
     // End of variables declaration//GEN-END:variables
 }

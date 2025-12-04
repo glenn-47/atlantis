@@ -39,7 +39,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
     }
     
     private void updateProgressBar(){
-        colCounter.setMaximum(3);
+        colCounter.setMaximum(4);
         colCounter.setValue(collectibleSystem.getCollectionCount());
     }
     
@@ -49,13 +49,13 @@ public class MidLvl1GUI extends javax.swing.JFrame {
             while((line = br.readLine()) != null) {//reads each line of the file that isnt empty
                 if(line.contains("Barrel") && line.contains("MidLvl1")) {//if line has barrel and midlvl1, the barrel is collected
                     if(!collectibleSystem.isCollected(barrelLbl)) {//if statement prevents progress bar duplication and message popups
-                        collectibleSystem.getCollectedItems().add(barrelLbl);
+                        collectibleSystem.collectCollectibleSilent(barrelLbl);
                     }
                     barrelLbl.setVisible(false);
                 }
                 if(line.contains("Metal Scrap") && line.contains("MidLvl1")) {//if line has metal scrap and midlvl1, th scrap is collected
                     if(!collectibleSystem.isCollected(scrapLbl)) {//if statement prevents progress bar collecitbe duplication and message popups
-                        collectibleSystem.getCollectedItems().add(scrapLbl);
+                        collectibleSystem.collectCollectibleSilent(scrapLbl);
                     }
                     scrapLbl.setVisible(false);
                 }
@@ -88,7 +88,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
         background1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(831, 558));
+        setMinimumSize(new java.awt.Dimension(900, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mainBtn.setText("MainMenu");
@@ -97,7 +97,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
                 mainBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(mainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+        getContentPane().add(mainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
         barrelLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C1.png"))); // NOI18N
         barrelLbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -121,7 +121,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
                 rightArrowMouseClicked(evt);
             }
         });
-        getContentPane().add(rightArrow, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 260, 80, 70));
+        getContentPane().add(rightArrow, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 210, 80, 70));
 
         displayBtn.setText("View Collectibles");
         displayBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -129,8 +129,8 @@ public class MidLvl1GUI extends javax.swing.JFrame {
                 displayBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(displayBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 20, -1, -1));
-        getContentPane().add(colCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, 140, -1));
+        getContentPane().add(displayBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, -1, -1));
+        getContentPane().add(colCounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 60, 140, -1));
 
         deleteBtn.setText("Reset");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +138,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
                 deleteBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, -1, -1));
+        getContentPane().add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, -1, -1));
 
         background1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/midImg1.jpeg"))); // NOI18N
         background1.setText("jLabel1");
@@ -148,7 +148,7 @@ public class MidLvl1GUI extends javax.swing.JFrame {
                 background1MouseClicked(evt);
             }
         });
-        getContentPane().add(background1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -20, 950, 550));
+        getContentPane().add(background1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -10, 937, 545));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -226,12 +226,6 @@ public class MidLvl1GUI extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "Error clearing file: " + e.getMessage());
         }
     }//GEN-LAST:event_deleteBtnActionPerformed
-
-    private void CloseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseBtnActionPerformed
-        // TODO add your handling code here:
-        //closes the App
-        System.exit(0);
-    }//GEN-LAST:event_CloseBtnActionPerformed
     //saves collectibles to txt file
     private void saveProgress(String collectibleName) {
         Progress progress = new Progress("CollectiblesProgress.txt");
