@@ -55,7 +55,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="java.awt.TextArea" name="textArea1">
+    <Component class="java.awt.TextArea" name="fishermanTXTBOX">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="490" y="30" width="310" height="180"/>
@@ -125,9 +125,22 @@
         </Constraint>
       </Constraints>
     </Component>
+    <Component class="javax.swing.JButton" name="Proceed">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Proceed"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ProceedActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="140" y="310" width="520" height="40"/>
+        </Constraint>
+      </Constraints>
+    </Component>
     <Component class="javax.swing.JButton" name="dialog1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Dialog option 1"/>
+        <Property name="text" type="java.lang.String" value="Your boat looks terrible get it off the sea."/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dialog1ActionPerformed"/>
@@ -140,7 +153,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="dialog2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Dialog option 2"/>
+        <Property name="text" type="java.lang.String" value="Mind if I join you for some fishing?"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dialog2ActionPerformed"/>
@@ -153,7 +166,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="dialog3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Dialog option 3"/>
+        <Property name="text" type="java.lang.String" value="You&apos;re overfishing in a protected zone, please move elsewhere!"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dialog3ActionPerformed"/>

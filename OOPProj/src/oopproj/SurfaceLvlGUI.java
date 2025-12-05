@@ -17,7 +17,7 @@ public class SurfaceLvlGUI extends javax.swing.JFrame {
      */
     public SurfaceLvlGUI() {
         initComponents();
-        jButton2.setVisible(false); //done temp for individual submission due to time constraints, was essentially the same as burns!
+        jButton2.setVisible(true); 
     }
 
     /**
@@ -47,21 +47,23 @@ public class SurfaceLvlGUI extends javax.swing.JFrame {
         });
         getContentPane().add(moveRightBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 220, -1, -1));
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/fisher2.png"))); // NOI18N
         jButton2.setText("boat");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 250, 90, 50));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, 140, 90));
 
+        factoryBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/factoryBurns.png"))); // NOI18N
         factoryBTN.setText("Factory");
         factoryBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 factoryBTNActionPerformed(evt);
             }
         });
-        getContentPane().add(factoryBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 90, 80));
+        getContentPane().add(factoryBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 150, 140));
 
         returnFromSurfaceLvlButton.setText("Return to Main Menu");
         returnFromSurfaceLvlButton.addActionListener(new java.awt.event.ActionListener() {
