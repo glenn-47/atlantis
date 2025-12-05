@@ -6,7 +6,7 @@ package oopproj;
 
 /**
  *
- * @author User
+ * @author Abdallah haouit
  */
 public class MediumCleanupTask extends CleanupTask {
 

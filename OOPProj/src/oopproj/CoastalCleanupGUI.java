@@ -2,17 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+/**
+ *
+ * @author Abdallah haouit
+ */
 package oopproj;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
-/**
- *
- * @author User
- */
+
 public class CoastalCleanupGUI extends javax.swing.JFrame {
-    TaskManager manager = new TaskManager();
+    TaskManager manager = new TaskManager(); // Handles all task featurew
 
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CoastalCleanupGUI.class.getName());
@@ -39,6 +40,7 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
         btnAddTask = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel11 = new javax.swing.JLabel();
         javax.swing.JButton jButton4 = new javax.swing.JButton();
         javax.swing.JLabel jLabel7 = new javax.swing.JLabel();
         javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
@@ -59,7 +61,7 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
         javax.swing.JButton btnSave = new javax.swing.JButton();
         btnLoad = new javax.swing.JButton();
         javax.swing.JLabel jLabel14 = new javax.swing.JLabel();
-        javax.swing.JProgressBar progressBar = new javax.swing.JProgressBar();
+        progressBar = new javax.swing.JProgressBar();
         javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
         javax.swing.JButton jButton18 = new javax.swing.JButton();
         javax.swing.JButton jButton7 = new javax.swing.JButton();
@@ -130,16 +132,11 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
             .addGroup(panelAddTaskLayout.createSequentialGroup()
                 .addGroup(panelAddTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelAddTaskLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(panelAddTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelAddTaskLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel4))
-                            .addGroup(panelAddTaskLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelAddTaskLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(48, 48, 48))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAddTaskLayout.createSequentialGroup()
                         .addComponent(btnAddTask, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,9 +144,7 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
                 .addGroup(panelAddTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtLocation)
                     .addComponent(cmbDifficulty, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAddTaskLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbWasteType, 0, 100, Short.MAX_VALUE))
                 .addGap(74, 74, 74))
         );
@@ -181,6 +176,11 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(120, 90, 60));
         jLabel1.setText("Add New Task");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 165, 35));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(120, 90, 60));
+        jLabel11.setText("Coastal Cleanup");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 180, 30));
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jButton4.setText("Main Menu");
@@ -334,9 +334,9 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
                     .addGroup(panelBottom2Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         panelBottom2Layout.setVerticalGroup(
             panelBottom2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,12 +357,12 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
                 .addGroup(panelBottom2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBottom2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(9, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBottom2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)))
-                .addContainerGap(9, Short.MAX_VALUE))
+                        .addGap(27, 27, 27))))
         );
 
         javax.swing.GroupLayout panelsearchAndManageLayout = new javax.swing.GroupLayout(panelsearchAndManage);
@@ -427,10 +427,10 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbDifficultyActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    try {
+     try {
+        // Ask  for an ID and try to delete the  task
         int id = Integer.parseInt(JOptionPane.showInputDialog("Enter ID to Delete:"));
 
-        
         boolean ok = manager.deleteById(id);
 
         if (ok)
@@ -438,11 +438,12 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
         else
             JOptionPane.showMessageDialog(this, "Task not Found.");
 
-        
+        // Updates  table after deleting
         manager.refreshTable((DefaultTableModel) tblTasks.getModel());
 
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Invalid ID.");
+        JOptionPane.showMessageDialog(this, "Invalid ID."); // Handles non-numeric input
+    
     }
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -523,7 +524,7 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
          else
        task = new HardCleanupTask(id, loc, waste);
 
-    // add the new task to our list
+    // add the new task to my list
         manager.addTask(task);
 
     JOptionPane.showMessageDialog(this, "Task Added");
@@ -531,7 +532,9 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
     // refresh table immediately
         manager.refreshTable((DefaultTableModel) tblTasks.getModel());
                                          
-  
+       manager.refreshTable((DefaultTableModel) tblTasks.getModel());
+    updateProgressBar();
+
 
     }//GEN-LAST:event_btnAddTaskActionPerformed
 
@@ -544,6 +547,8 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
     manager.loadFromFile();
     manager.refreshTable((DefaultTableModel) tblTasks.getModel());
     JOptionPane.showMessageDialog(this, "Tasks loaded");          
+        manager.refreshTable((DefaultTableModel) tblTasks.getModel());
+    updateProgressBar();
 
     }//GEN-LAST:event_btnLoadActionPerformed
 
@@ -566,11 +571,32 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
             break;
         }
     }
+        manager.refreshTable((DefaultTableModel) tblTasks.getModel());
+    updateProgressBar();
 
     JOptionPane.showMessageDialog(this, "Marked done");
     manager.refreshTable((DefaultTableModel) tblTasks.getModel());
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    
+        // updates the progress bar based on how many tasks are done
+    private void updateProgressBar() {
+        int total = manager.getTaskCount();   // how many tasks exist
+        int done = manager.getDoneCount();    // how many are done
+
+        if (total == 0) {
+            progressBar.setValue(0);
+            progressBar.setString("");
+            return;
+        }
+
+        int percent = (int) ((done * 100.0) / total);
+        progressBar.setValue(percent);
+        progressBar.setString(percent + "% complete");
+        progressBar.setStringPainted(true);
+    }
+
+    
     /**
      * @param args the command line arguments
      */
@@ -603,6 +629,7 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
     javax.swing.JComboBox<String> cmbDifficulty;
     javax.swing.JComboBox<String> cmbWasteType;
     javax.swing.JButton jButton2;
+    javax.swing.JProgressBar progressBar;
     javax.swing.JTable tblTasks;
     javax.swing.JTextField txtLocation;
     javax.swing.JTextField txtSearch;
