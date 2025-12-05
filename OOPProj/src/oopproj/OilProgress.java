@@ -5,11 +5,14 @@
 package oopproj;
 
 import java.util.ArrayList;
+import javax.swing.JProgressBar;
+
 
 public class OilProgress {
 
-    public static void TreatmentProcess(ArrayList<String> waterTreatment, javax.swing.JProgressBar progressBar) {
-        int count = 0;
+    public static void TreatmentProcess(ArrayList<String> waterTreatment, JProgressBar progressBar) {
+        //references array and progress bar
+        int count = 0; 
         System.out.println("Oil tiles cleaned:");
 
         if (waterTreatment.isEmpty()) {
@@ -20,6 +23,7 @@ public class OilProgress {
                 if ("oilTile".equals(treated)) {
                     count++;
                     System.out.println("number" + count);
+                    //for every oil tile it finds in array, add one to counter
                 }
             }
         }

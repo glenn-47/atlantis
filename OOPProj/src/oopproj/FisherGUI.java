@@ -4,20 +4,84 @@
  */
 package oopproj;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Andrew
  */
 public class FisherGUI extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FisherGUI.class.getName());
+
+    int persuaded = 0;
+    int phase = 0;
 
     /**
      * Creates new form FactoryGUI
      */
     public FisherGUI() {
         initComponents();
+        setInitialView();
+
     }
+
+    public void setInitialView() {
+        dialog1.setVisible(true);
+        dialog2.setVisible(true);
+        dialog3.setVisible(true);
+        dialog1.setText("Your boat looks terrible get it off the sea.");
+        dialog2.setText("Mind if I join you for some fishing?");
+        dialog3.setText("You're overfishing in a protected zone, please move elsewhere!");
+
+        fishermanTXTBOX.setEditable(false);
+        fishermanTXTBOX.setText("What can I help you with?");
+
+        pBar.setMinimum(0);
+        pBar.setMaximum(3);
+        pBar.setValue(0);
+
+        Proceed.setVisible(false);
+    }
+
+    public void persuadeIncrease() {
+        //Increment persuasion+phase
+        persuaded++;
+        phase++;
+
+        //Update bar
+        FisherProgress.increaseBar(pBar, persuaded);
+
+        //proceed
+        dialog1.setVisible(false);
+        dialog2.setVisible(false);
+        dialog3.setVisible(false);
+        Proceed.setVisible(true);
+
+        switch (persuaded) {
+            case 1:
+                fishermanTXTBOX.setText("Fisherman looks annoyed but listens.");
+                dialog1.setText("you stink, its killing the fish.");
+                dialog2.setText("nah I'm joking lets go fishing");
+                dialog3.setText("The species of fish here are almost exinct.");
+                break;
+            case 2:
+                fishermanTXTBOX.setText("Fisherman seems to be considering your point.");
+                dialog1.setText("I'm never coming here again.");
+                dialog2.setText("pass me a rod!");
+                dialog3.setText("Your compliance will save entire species! And you wont go to jail!");
+                break;
+            case 3:
+                fishermanTXTBOX.setText("The fisherman agrees to stop overfishing!");
+                break;
+        }
+
+        if (persuaded >= pBar.getMaximum()) {
+            JOptionPane.showMessageDialog(this, "The fisherman agrees to stop overfishing!");
+            Proceed.setVisible(false);
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,11 +95,12 @@ public class FisherGUI extends javax.swing.JFrame {
         roomTitleLBL = new javax.swing.JLabel();
         ReturnBTN = new javax.swing.JButton();
         pBar = new javax.swing.JProgressBar();
-        textArea1 = new java.awt.TextArea();
+        fishermanTXTBOX = new java.awt.TextArea();
         burnsLBL = new javax.swing.JLabel();
         burnsBackgroundPNL = new javax.swing.JPanel();
         pMeterLBL = new javax.swing.JLabel();
         responseLBL = new javax.swing.JLabel();
+        Proceed = new javax.swing.JButton();
         dialog1 = new javax.swing.JButton();
         dialog2 = new javax.swing.JButton();
         dialog3 = new javax.swing.JButton();
@@ -56,7 +121,7 @@ public class FisherGUI extends javax.swing.JFrame {
         });
         getContentPane().add(ReturnBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 150, 30));
         getContentPane().add(pBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 150, 20));
-        getContentPane().add(textArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 310, 180));
+        getContentPane().add(fishermanTXTBOX, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 310, 180));
 
         burnsLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/fisher.png"))); // NOI18N
         getContentPane().add(burnsLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 30, 310, 180));
@@ -84,7 +149,15 @@ public class FisherGUI extends javax.swing.JFrame {
         responseLBL.setText("How do you respond?");
         getContentPane().add(responseLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, -1, 20));
 
-        dialog1.setText("Dialog option 1");
+        Proceed.setText("Proceed");
+        Proceed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProceedActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Proceed, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 520, 40));
+
+        dialog1.setText("Your boat looks terrible get it off the sea.");
         dialog1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dialog1ActionPerformed(evt);
@@ -92,7 +165,7 @@ public class FisherGUI extends javax.swing.JFrame {
         });
         getContentPane().add(dialog1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 520, 40));
 
-        dialog2.setText("Dialog option 2");
+        dialog2.setText("Mind if I join you for some fishing?");
         dialog2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dialog2ActionPerformed(evt);
@@ -100,7 +173,7 @@ public class FisherGUI extends javax.swing.JFrame {
         });
         getContentPane().add(dialog2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 520, 40));
 
-        dialog3.setText("Dialog option 3");
+        dialog3.setText("You're overfishing in a protected zone, please move elsewhere!");
         dialog3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dialog3ActionPerformed(evt);
@@ -115,23 +188,47 @@ public class FisherGUI extends javax.swing.JFrame {
 
     private void dialog3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialog3ActionPerformed
         // TODO add your handling code here:
+        persuadeIncrease(); //calls method
+        FisherProgress.increaseBar(pBar, persuaded); //to other class
+
     }//GEN-LAST:event_dialog3ActionPerformed
 
     private void dialog1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialog1ActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "you've been kicked off the ship for being rude.");
+        SurfaceLvlGUI surfaceGUI = new SurfaceLvlGUI();
+        surfaceGUI.setVisible(true);
+        this.dispose();
+
+
     }//GEN-LAST:event_dialog1ActionPerformed
 
     private void dialog2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialog2ActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "your mission was not to go fishing, what the hell??");
+        SurfaceLvlGUI surfaceGUI = new SurfaceLvlGUI();
+        surfaceGUI.setVisible(true);
+        this.dispose();
+
+
     }//GEN-LAST:event_dialog2ActionPerformed
 
     private void ReturnBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnBTNActionPerformed
         // TODO add your handling code here:
-        SurfaceLvlGUI surfaceGUI= new SurfaceLvlGUI();
+        SurfaceLvlGUI surfaceGUI = new SurfaceLvlGUI();
         surfaceGUI.setVisible(true);
         this.dispose();
-        //also must put a save "burn's opinion" method here
+
     }//GEN-LAST:event_ReturnBTNActionPerformed
+
+    private void ProceedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProceedActionPerformed
+        // TODO add your handling code here:
+        // Just show the next set of dialogs
+        Proceed.setVisible(false);
+        dialog1.setVisible(true);
+        dialog2.setVisible(true);
+        dialog3.setVisible(true);
+    }//GEN-LAST:event_ProceedActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,6 +256,7 @@ public class FisherGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Proceed;
     private javax.swing.JButton ReturnBTN;
     private javax.swing.JPanel burnsBackgroundPNL;
     private javax.swing.JLabel burnsLBL;
@@ -166,11 +264,11 @@ public class FisherGUI extends javax.swing.JFrame {
     private javax.swing.JButton dialog2;
     private javax.swing.JButton dialog3;
     private javax.swing.JLabel factoryBackground;
+    private java.awt.TextArea fishermanTXTBOX;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JProgressBar pBar;
     private javax.swing.JLabel pMeterLBL;
     private javax.swing.JLabel responseLBL;
     private javax.swing.JLabel roomTitleLBL;
-    private java.awt.TextArea textArea1;
     // End of variables declaration//GEN-END:variables
 }
