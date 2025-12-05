@@ -91,7 +91,7 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         });
         getContentPane().add(mainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        shipLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C3 (2).png"))); // NOI18N
+        shipLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C3.png"))); // NOI18N
         shipLbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 shipLblMouseClicked(evt);
@@ -124,7 +124,7 @@ public class MidLvl2GUI extends javax.swing.JFrame {
         });
         getContentPane().add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, -1));
 
-        turtleLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/Adobe Express - file (3).png"))); // NOI18N
+        turtleLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/C4.png"))); // NOI18N
         turtleLbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 turtleLblMouseClicked(evt);

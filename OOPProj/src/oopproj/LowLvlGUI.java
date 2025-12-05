@@ -5,7 +5,9 @@
 package oopproj;
 
 /**
- *
+ * 
+ * Deep Abyss Section
+ * ==================
  * @author glenn
  */
 public class LowLvlGUI extends javax.swing.JFrame {
