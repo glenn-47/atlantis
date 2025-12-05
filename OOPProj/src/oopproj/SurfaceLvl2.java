@@ -35,13 +35,14 @@ public class SurfaceLvl2 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/OILspill2.png"))); // NOI18N
         jButton1.setText("large ship");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 110, 70));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 300, 140));
 
         moveLeftBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/Arrow1.png"))); // NOI18N
         moveLeftBTN.setInheritsPopupMenu(true);
