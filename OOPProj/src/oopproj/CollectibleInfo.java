@@ -6,7 +6,7 @@ package oopproj;
 
 /**
  *
- * @author mncrf
+ * @author Abdallah Haouit
  */
 public class CollectibleInfo {
     

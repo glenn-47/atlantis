@@ -10,7 +10,7 @@ package oopproj;
  */
 public class MediumCleanupTask extends CleanupTask {
 
-    public MediumCleanupTask(int id, String location, String wasteType) {
-        super(id, location, wasteType, "Medium");
+    public MediumCleanupTask(int id, String location, String weather) {
+        super(id, location, weather, "Medium");
     }
 }

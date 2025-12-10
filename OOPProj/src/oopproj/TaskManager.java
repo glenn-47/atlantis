@@ -54,7 +54,7 @@ import javax.swing.table.DefaultTableModel;
             model.addRow(new Object[]{
                 t.getId(),
                 t.getLocation(),
-                t.getWasteType(),
+                t.getWeather(),
                 t.getDifficulty(),
                 t.isDone() ? "Yes" : "No"
             });
@@ -72,7 +72,7 @@ import javax.swing.table.DefaultTableModel;
                 pw.println(
                     t.getId() + "," +
                     t.getLocation() + "," +
-                    t.getWasteType() + "," +
+                    t.getWeather() + "," +
                     t.getDifficulty() + "," +
                     t.isDone()
                 );
@@ -104,18 +104,18 @@ import javax.swing.table.DefaultTableModel;
 
                 int id = Integer.parseInt(p[0]);
                 String loc = p[1];
-                String waste = p[2];
+                String weather = p[2];
                 String diff = p[3];
                 boolean done = Boolean.parseBoolean(p[4]);
 
                 CleanupTask t;
 
                 if (diff.equals("Easy")) {
-                    t = new EasyCleanupTask(id, loc, waste);
+                    t = new EasyCleanupTask(id, loc, weather);
                 } else if (diff.equals("Medium")) {
-                    t = new MediumCleanupTask(id, loc, waste);
+                    t = new MediumCleanupTask(id, loc, weather);
                 } else {
-                    t = new HardCleanupTask(id, loc, waste);
+                    t = new HardCleanupTask(id, loc, weather);
                 }
 
                 if (done) {

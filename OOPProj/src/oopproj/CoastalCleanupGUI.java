@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 
 public class CoastalCleanupGUI extends javax.swing.JFrame {
-    TaskManager manager = new TaskManager(); // Handles all task featurew
+    TaskManager manager = new TaskManager(); // created and intialised taskNanager object ,  Handles all task featurew
 
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CoastalCleanupGUI.class.getName());
@@ -35,7 +35,7 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
         javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
         javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
         txtLocation = new javax.swing.JTextField();
-        cmbWasteType = new javax.swing.JComboBox<>();
+        cmbWeather = new javax.swing.JComboBox<>();
         cmbDifficulty = new javax.swing.JComboBox<>();
         btnAddTask = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -97,7 +97,7 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
             }
         });
 
-        cmbWasteType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "clear", "Rainy", "Windy", "Red", "Red warning", "Sunny", "Moderate heat" }));
+        cmbWeather.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "clear", "Rainy", "Windy", "Red", "Red warning", "Sunny", "Moderate heat" }));
 
         cmbDifficulty.setFont(new java.awt.Font("Segoe UI", 2, 13)); // NOI18N
         cmbDifficulty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Easy", "Medium", "Hard" }));
@@ -145,7 +145,7 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
                     .addComponent(txtLocation)
                     .addComponent(cmbDifficulty, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbWasteType, 0, 100, Short.MAX_VALUE))
+                    .addComponent(cmbWeather, 0, 100, Short.MAX_VALUE))
                 .addGap(74, 74, 74))
         );
         panelAddTaskLayout.setVerticalGroup(
@@ -158,7 +158,7 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(panelAddTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(cmbWasteType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbWeather, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(panelAddTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -428,9 +428,12 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
      try {
-        // Ask  for an ID and try to delete the  task
+         // delete task section
+         
+        // Asks the user for an ID to input to delete the  task
         int id = Integer.parseInt(JOptionPane.showInputDialog("Enter ID to Delete:"));
-
+            
+        //calls deleteByid method fr  and attempts to delete by id
         boolean ok = manager.deleteById(id);
 
         if (ok)
@@ -442,7 +445,7 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
         manager.refreshTable((DefaultTableModel) tblTasks.getModel());
 
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Invalid ID."); // Handles non-numeric input
+        JOptionPane.showMessageDialog(this, "Invalid ID."); // shows invalid input when a user inputs anything but a number
     
     }
         
@@ -469,25 +472,28 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btnSearchjButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchjButton5ActionPerformed
-     
+        // search task  button
+        
+        
+        //all user input stored as a string 
         String q = txtSearch.getText().trim();
 
     if (q.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Enter a locatiob.");
+        JOptionPane.showMessageDialog(this, "Enter a location.");
         return;
     }
-     
+     //calls searchBylocation method to find the task matching location
     CleanupTask result = manager.searchByLocation(q);
 
     if (result == null) {
         JOptionPane.showMessageDialog(this, "No task found.");
         return;
     }
-
+        //if found it display all the details about it
     JOptionPane.showMessageDialog(this,
             "Found:\nID: " + result.getId() +
             "\nLocation: " + result.getLocation() +
-            "\nWaste: " + result.getWasteType() +
+            "\nWeather: " + result.getWeather() +
             "\nDifficulty: " + result.getDifficulty() +
             "\nDone: " + (result.isDone() ? "Yes" : "No"));
     }//GEN-LAST:event_btnSearchjButton5ActionPerformed
@@ -503,28 +509,30 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void btnAddTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTaskActionPerformed
-                                          
+             //add task button 
+             
+             //gets user input from textfield and combo boxes
         String loc = txtLocation.getText().trim();
-        String waste = cmbWasteType.getSelectedItem().toString();
+        String weather = cmbWeather.getSelectedItem().toString();
         String diff = cmbDifficulty.getSelectedItem().toString();
 
         if (loc.isEmpty()) {
           JOptionPane.showMessageDialog(this, "Enter a location.");
          return;
     }
-
+                
         int id = manager.getNextId();
         CleanupTask task;
 
-        // choose the correct task type based on difficulty
+        // chekcs which difficulty user picked to create the correct type of taks
     if (diff.equals("Easy"))
-        task = new EasyCleanupTask(id, loc, waste);
+        task = new EasyCleanupTask(id, loc, weather);
         else if (diff.equals("Medium"))
-        task = new MediumCleanupTask(id, loc, waste);
+        task = new MediumCleanupTask(id, loc, weather);
          else
-       task = new HardCleanupTask(id, loc, waste);
+       task = new HardCleanupTask(id, loc, weather);
 
-    // add the new task to my list
+    // this adds tasks then stores it in an array list 
         manager.addTask(task);
 
     JOptionPane.showMessageDialog(this, "Task Added");
@@ -557,6 +565,8 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        //mark done button 
+        
         int row = tblTasks.getSelectedRow();
     if (row < 0) {
         JOptionPane.showMessageDialog(this, "Select a task first.");
@@ -627,7 +637,7 @@ public class CoastalCleanupGUI extends javax.swing.JFrame {
     javax.swing.JButton btnLoad;
     javax.swing.JButton btnSearch;
     javax.swing.JComboBox<String> cmbDifficulty;
-    javax.swing.JComboBox<String> cmbWasteType;
+    javax.swing.JComboBox<String> cmbWeather;
     javax.swing.JButton jButton2;
     javax.swing.JProgressBar progressBar;
     javax.swing.JTable tblTasks;

@@ -10,7 +10,7 @@ package oopproj;
 
 public class EasyCleanupTask extends CleanupTask {
 
-    public EasyCleanupTask(int id, String location, String wasteType) {
-        super(id, location, wasteType, "Easy");
+    public EasyCleanupTask(int id, String location, String weather) {
+        super(id, location, weather, "Easy");
     }
 }

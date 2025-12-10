@@ -13,22 +13,22 @@ public class CleanupTask {
     // Stores task details
     protected int id;
     protected String location;
-    protected String wasteType;
+    protected String weather;
     protected String difficulty;
     protected boolean done;
 
-    public CleanupTask(int id, String location, String wasteType, String difficulty) {
+    public CleanupTask(int id, String location, String weather, String difficulty) {
         
         this.id = id;
         this.location = location;
-        this.wasteType = wasteType;
+        this.weather = weather;
         this.difficulty = difficulty;
         this.done = false;
     }
 
     public int getId() { return id; }
     public String getLocation() { return location; }
-    public String getWasteType() { return wasteType; }
+    public String getWeather() { return weather; }
     public String getDifficulty() { return difficulty; }
     public boolean isDone() { return done; }
 
